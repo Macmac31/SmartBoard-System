@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SmartBoard – Boarding House Management System</title>
+<style>
+:root{--ink:#1c211e;--lime:#e1f489;--lime2:#cfe86a;--mint:#d6f3e4;--sage:#b9d8c6;--bg:#e9efec;--b:#e6eae7;--r:#d9534f}
+*{box-sizing:border-box}body{margin:0;font:14px/1.5 Lato,"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+h1,h2,h3{margin:0 0 10px;letter-spacing:-.01em}.mut{color:#6a766f;font-size:13px}
+.app{display:flex;min-height:100vh;padding:14px}
+nav{width:210px;background:#fff;border-radius:16px 0 0 16px;padding:18px 12px;flex:none;border-right:1px solid var(--b)}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:20px;padding:2px 8px 18px}
+.lg{width:22px;height:22px;display:grid;grid-template-columns:1fr 1fr;gap:2px}.lg i{background:var(--lime2);border-radius:2px}.lg i:nth-child(3n){background:var(--sage)}
+nav a{display:flex;gap:10px;padding:10px 12px;border-radius:10px;color:#58645d;cursor:pointer;margin-bottom:3px;font-weight:600}nav a span{width:18px;text-align:center}
+nav a.on{background:var(--lime);color:var(--ink)}nav a:hover:not(.on){background:#f1f5f2}
+.wrap{flex:1;min-width:0;background:#f6f8f7;border-radius:0 16px 16px 0;padding:20px 24px}
+.bar2{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}.bar2 h2{margin:0;font-size:24px;flex:1}
+.srch{padding:9px 14px;width:240px}
+.me{display:flex;align-items:center;gap:8px;font-size:13px;line-height:1.2}.av{width:34px;height:34px;border-radius:50%;background:var(--lime);display:grid;place-items:center;font-weight:800}
+.bell{position:relative;background:#fff;border:1px solid var(--b);width:38px;height:38px;padding:0}.bell b{position:absolute;top:-5px;right:-5px;background:var(--r);color:#fff;border-radius:99px;font-size:10px;padding:0 5px}
+.top{display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.card{background:#fff;border:1px solid var(--b);border-radius:14px;padding:16px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:16px}
+.g2{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+.stat{background:#fff;border:1px solid var(--b);border-radius:14px;padding:14px 16px}.stat small{color:#6a766f}.stat b{display:block;font-size:26px}.grid .stat:first-child{background:var(--mint);border-color:var(--mint)}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid var(--b);text-align:left;white-space:nowrap}th{font-size:12.5px;color:#58645d;font-weight:700;background:#eef7f1}
+input,select,button{font:inherit;padding:8px 11px;border:1px solid var(--b);border-radius:10px;background:#fff;color:var(--ink)}
+button{background:var(--lime);border:0;font-weight:700;cursor:pointer}button.s{background:var(--mint)}button.d{background:#f9d9d7;color:#8c2a24}button.sm{padding:4px 11px;font-size:12px}button:disabled{opacity:.4}button:hover:not(:disabled){filter:brightness(.96)}
+:focus-visible{outline:2px solid var(--lime2);outline-offset:2px}
+.f{display:flex;gap:10px;flex-wrap:wrap;align-items:end}.col{display:flex;flex-direction:column;gap:10px}.row{display:flex;gap:8px;margin-top:10px}
+label{display:flex;flex-direction:column;font-size:12.5px;gap:3px;color:#4b574f;font-weight:600}.n{width:90px}[hidden]{display:none!important}
+.tag{padding:2px 10px;border-radius:8px;font-size:12px;font-weight:700}.Paid{background:#d6f3e4;color:#0d6a3a}.Unpaid{background:#fff1c9;color:#8a5a00}.Overdue{background:#fadbd8;color:#9b2c20}.Vacant{background:#e6e9ee;color:#556}.Occupied{background:var(--lime);color:#3b4a00}
+.bar{height:10px;background:var(--lime2);border-radius:5px}
+.dn{width:140px;height:140px;border-radius:50%;display:grid;place-items:center;margin:6px auto 12px}.dn div{width:96px;height:96px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center;line-height:1.2;font-weight:800;font-size:22px}
+.seg{display:flex;height:34px;border-radius:8px;overflow:hidden;margin-bottom:12px}
+.lk{display:flex;align-items:center;gap:8px;margin:5px 0}.lk i{width:12px;height:12px;border-radius:3px;flex:none}.lk b{margin-left:auto}
+.auth{min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr;background:var(--bg)}
+.ah{background:linear-gradient(160deg,var(--mint),var(--lime));padding:48px;display:flex;flex-direction:column;justify-content:center;gap:16px}.ah h1{font-size:34px;line-height:1.15;margin:0}.ah p{margin:0;max-width:420px}
+.pl{display:inline-flex;gap:8px;align-items:center;background:#fff;border-radius:99px;padding:8px 16px;font-weight:700;margin:0 8px 8px 0}.pl:before{content:'✓';background:var(--lime2);border-radius:50%;width:20px;height:20px;display:grid;place-items:center;font-size:12px}
+.af{display:grid;place-items:center;padding:24px}.af .card{width:100%;max-width:390px;padding:26px;margin:0}
+.tabs{display:flex;gap:6px;margin:14px 0;background:#eef2ef;padding:4px;border-radius:12px}.tabs button{flex:1;background:none}.tabs button.on{background:var(--lime)}
+#m:not(:empty){position:fixed;inset:0;background:#0008;overflow:auto;padding:20px;z-index:9}.mb{max-width:660px;margin:auto}
+@media(max-width:900px){.app{display:block;padding:0}nav{width:auto;display:flex;overflow-x:auto;padding:8px;border-radius:0}.logo{padding:6px 10px}nav a{white-space:nowrap;margin:0}.wrap{border-radius:0;padding:14px}.g2,.auth{grid-template-columns:1fr}.ah{padding:28px}.srch{width:100%}}
+@media print{nav,.nop,.top button,.bar2{display:none!important}body{background:#fff}.card{border:0}.app{padding:0}.wrap{background:#fff;padding:0}body.pm .wrap{display:none}#m:not(:empty){position:static;background:none;padding:0}}
+</style></head><body><div id="app"></div><div id="m"></div>
+<script>
+const $=s=>document.querySelector(s),E=s=>String(s??'').replace(/[&<>"]/g,c=>'&#'+c.charCodeAt(0)+';'),
+P=n=>'₱'+(+n||0).toLocaleString('en-PH',{minimumFractionDigits:2,maximumFractionDigits:2}),pad=n=>String(n).padStart(2,'0'),
+mo=d=>d.getFullYear()+'-'+pad(d.getMonth()+1),today=()=>{let d=new Date();return mo(d)+'-'+pad(d.getDate())},
+addm=(m,n)=>{let[y,x]=m.split('-').map(Number);return mo(new Date(y,x-1+n,1))},ML=m=>new Date(m+'-15').toLocaleString('en',{month:'long',year:'numeric'}),
+hash=s=>{let h=5381;for(const c of s)h=(h*33^c.charCodeAt(0))>>>0;return h.toString(36)},K='smartboard_v1',CUR=mo(new Date());
+let S=JSON.parse(localStorage.getItem(K)||'null'),U=null,page='dash',MO=CUR,RF=addm(CUR,-2),RT=CUR,tab='in',LT=null;
+const save=()=>localStorage.setItem(K,JSON.stringify(S)),nid=()=>S.seq++,rnd=x=>Math.round(x*100)/100,
+opt=(a,s)=>a.map(([v,l])=>`<option value="${v}"${v==s?' selected':''}>${E(l)}</option>`).join(''),tag=s=>`<span class="tag ${s}">${s}</span>`,
+room=i=>S.rooms.find(r=>r.id==i),ten=i=>S.tenants.find(t=>t.id==i),act=m=>S.tenants.filter(t=>active(t,m)),
+active=(t,m)=>t.in.slice(0,7)<=m&&(!t.out||t.out.slice(0,7)>=m),reading=(r,m)=>S.readings.find(x=>x.room==r&&x.m==m),
+rate=(t,m)=>{let r=S.rates.filter(x=>x.t==t&&x.e<=m).sort((a,b)=>b.e.localeCompare(a.e))[0];return r?r.v:0},
+sm=(L,t)=>L.filter(x=>x.t==t).reduce((s,x)=>s+x.a,0),sum2=(a,k)=>rnd(a.reduce((s,x)=>s+x[1][k],0)),
+bal=(tid,k)=>{let L=S.ledger.filter(x=>x.tid==tid);return rnd(k=='adv'?sm(L,'advance')-sm(L,'apply'):sm(L,'deposit')-sm(L,'refund'))};
+function bill(t,m){let r=room(t.room),rd=reading(t.room,m),el=rd?rd.ce-rd.pe:0,wa=rd?rd.cw-rd.pw:0,er=rate('elec',m),wr=rate('water',m),
+items=[['Wi-Fi',rate('wifi',m)],['Garbage collection',rate('garbage',m)]].filter(x=>x[1]>0).concat(S.misc.filter(x=>x.room==t.room&&x.m==m).map(x=>[x.desc,x.a])),
+misc=rnd(items.reduce((s,x)=>s+x[1],0)),e=rnd(el*er),w=rnd(wa*wr),total=rnd(r.rent+e+w+misc),L=S.ledger.filter(x=>x.tid==t.id&&x.m==m),credit=sm(L,'apply'),paid=sm(L,'rent');
+return{r,rd,el,wa,e,w,er,wr,items,misc,total,credit,paid,rent:r.rent,due:Math.max(0,rnd(total-credit-paid))}}
+function status(t,m){let b=bill(t,m);return b.due<=0?'Paid':(m<CUR||(m==CUR&&new Date().getDate()>10))?'Overdue':'Unpaid'}
+function seed(){const c=CUR;S={seq:100,users:[{u:'owner',p:hash('owner123'),n:'Owner Admin',r:'owner'},{u:'staff',p:hash('staff123'),n:'Caretaker',r:'staff'},{u:'tenant',p:hash('tenant123'),n:'Juan Dela Cruz',r:'tenant',tid:1}],rooms:[],tenants:[],ledger:[],readings:[],misc:[],rates:[]};
+[[101,1,2500],[102,1,2500],[103,1,2800],[201,2,3000],[202,2,3200]].forEach(([no,f,rent],i)=>S.rooms.push({id:i+1,no,f,rent}));
+S.rates=[['elec',12.5,-3],['water',30,-3],['wifi',100,-3],['garbage',50,-3],['elec',13.2,-1]].map(([t,v,k])=>({t,v,e:addm(c,k)}));
+['Juan Dela Cruz','Maria Santos','Pedro Reyes','Ana Lim'].forEach((n,i)=>{let t={id:i+1,n,ph:'0917-555-010'+i,em:'Family 0918-555-02'+i,room:i+1,in:addm(c,-4)+'-05',out:''};S.tenants.push(t);
+S.ledger.push({id:nid(),tid:t.id,m:addm(c,-4),a:S.rooms[i].rent,d:t.in,t:'deposit',note:'Security deposit'},{id:nid(),tid:t.id,m:addm(c,-4),a:S.rooms[i].rent,d:t.in,t:'advance',note:'Advance payment'});
+let e=1000+i*200,w=50+i*10;for(let k=3;k>=1;k--){let ce=e+80+(i*7+k*13)%50,cw=w+6+(i*3+k*5)%6;S.readings.push({room:t.room,m:addm(c,-k),pe:e,ce,pw:w,cw});e=ce;w=cw}});
+S.tenants.forEach(t=>{for(let k=3;k>=1;k--){let m=addm(c,-k);if(t.id==3&&k==1)continue;S.ledger.push({id:nid(),tid:t.id,m,a:bill(t,m).due,d:m+'-0'+(3+t.id),t:'rent',note:'Rent & utilities'})}});save()}
+const NAV={owner:[['dash','Dashboard','▦'],['tenants','Tenants','☺'],['rooms','Rooms','⌂'],['readings','Meter readings','ϟ'],['payments','Payments','₱'],['billing','Billing','▤'],['ledger','Ledger','☰'],['reports','Reports','◔'],['settings','Rates','⚙']],
+staff:[['dash','Dashboard','▦'],['tenants','Tenants','☺'],['readings','Meter readings','ϟ'],['payments','Payments','₱']],tenant:[['mine','My bill','▤']]};
+const mp=()=>`<label>Month<input type="month" value="${MO}" onchange="MO=this.value||CUR;R()"></label>`;
+const LOGO='<div class="lg">'+'<i></i>'.repeat(6)+'</div>SmartBoard';
+function authView(){$('#app').innerHTML=`<div class="auth"><div class="ah"><div class="logo" style="padding:0">${LOGO}</div><h1>Run your boarding house without the paperwork</h1><p>Track tenants, bill electricity and water automatically, and see every payment in one place.</p><div><span class="pl">Tenant tracking</span><span class="pl">Utility auto-billing</span><span class="pl">Financial ledger</span></div></div>
+<div class="af"><div class="card"><h2>${tab=='in'?'Welcome back':'Create your account'}</h2><p class="mut">${tab=='in'?'Log in to manage your boarding house.':'Register as a tenant, staff member, or owner.'}</p>
+<div class="tabs"><button class="${tab=='in'?'on':''}" onclick="tab='in';R()">Log in</button><button class="${tab=='up'?'on':''}" onclick="tab='up';R()">Register</button></div>
+${tab=='in'?`<form class="col" onsubmit="return H('login',event)"><label>Username<input name="u" required autofocus></label><label>Password<input name="p" type="password" required></label><button>Log in</button></form>
+<p class="mut">Demo accounts: owner / owner123, staff / staff123, tenant / tenant123</p>`:
+`<form class="col" onsubmit="return H('reg',event)"><label>Full name<input name="n" required></label><label>Username<input name="u" required></label><label>Password (6+ characters)<input name="p" type="password" minlength="6" required></label><label>Confirm password<input name="p2" type="password" required></label>
+<label>I am a<select name="r" onchange="$('#x1').hidden=this.value!='tenant';$('#x2').hidden=this.value=='tenant'"><option value="tenant">Tenant</option><option value="staff">Staff / caretaker</option><option value="owner">Owner / admin</option></select></label>
+<label id="x1">Your room number<input name="room"></label><label id="x2" hidden>Staff / owner access code<input name="code"></label><button>Create account</button></form><p class="mut">Demo access code for staff and owner: SMART2026</p>`}</div></div></div>`}
+function R(){if(!U)return authView();let nv=NAV[U.r];if(!nv.some(x=>x[0]==page))page=nv[0][0];let od=U.r=='owner'?act(CUR).filter(t=>status(t,CUR)=='Overdue').length:0;
+$('#app').innerHTML=`<div class="app"><nav><div class="logo">${LOGO}</div>${nv.map(([k,l,i])=>`<a class="${k==page?'on':''}" onclick="page='${k}';R()"><span>${i}</span>${l}</a>`).join('')}<a onclick="logout()"><span>↩</span>Log out</a></nav>
+<div class="wrap"><div class="bar2"><h2>${nv.find(x=>x[0]==page)[1]}</h2><input class="srch nop" placeholder="Search this page..." oninput="flt(this.value)">${U.r=='owner'?`<button class="bell nop" title="Overdue accounts" onclick="page='billing';MO=CUR;R()">🔔${od?`<b>${od}</b>`:''}</button>`:''}<div class="me"><div class="av">${E(U.n[0]||'?').toUpperCase()}</div><div><b>${E(U.n)}</b><br><span class="mut">${U.r}</span></div></div></div>${V[page]()}</div></div>`}
+function flt(q){q=q.toLowerCase();document.querySelectorAll('.wrap tr').forEach(r=>{if(!r.querySelector('th'))r.hidden=!!q&&!r.textContent.toLowerCase().includes(q)})}
+const V={
+dash(){let a=act(MO),bs=a.map(t=>[t,bill(t,MO)]),occ=S.tenants.filter(t=>!t.out),vac=S.rooms.length-occ.length,
+col=m=>rnd(S.ledger.filter(x=>['rent','advance','deposit'].includes(x.t)&&x.d.slice(0,7)==m).reduce((s,x)=>s+x.a,0)),
+ms=[5,4,3,2,1,0].map(k=>addm(MO,-k)),vs=ms.map(col),mx=Math.max(1,...vs),X=i=>30+i*100,Y=v=>160-v/mx*130,st={Paid:0,Unpaid:0,Overdue:0};a.forEach(t=>st[status(t,MO)]++);
+let path=vs.map((v,i)=>i?`C${(X(i-1)+X(i))/2},${Y(vs[i-1])} ${(X(i-1)+X(i))/2},${Y(v)} ${X(i)},${Y(v)}`:`M${X(0)},${Y(v)}`).join(' '),
+svg=`<svg viewBox="0 0 560 190" style="width:100%"><defs><linearGradient id="gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe86a" stop-opacity=".55"/><stop offset="1" stop-color="#cfe86a" stop-opacity="0"/></linearGradient></defs><path d="${path} L${X(5)},160 L${X(0)},160Z" fill="url(#gr)"/><path d="${path}" fill="none" stroke="#b5d24a" stroke-width="2.5"/>${vs.map((v,i)=>`<circle cx="${X(i)}" cy="${Y(v)}" r="4.5" fill="#fff" stroke="#b5d24a" stroke-width="2"><title>${ML(ms[i])}: ${P(v)}</title></circle><text x="${X(i)}" y="182" font-size="11" text-anchor="middle" fill="#6a766f">${ML(ms[i]).slice(0,3)}</text>`).join('')}</svg>`,
+n=a.length||1,p1=st.Paid/n*100,p2=p1+st.Unpaid/n*100,od=a.filter(t=>status(t,MO)=='Overdue'),nr=a.filter(t=>!reading(t.room,MO)),
+bx=(l,v,c)=>`<div class="stat" style="background:${c};border:0"><small>${l}</small><b>${v}</b></div>`;
+return `<div class="top">${mp()}</div><div class="grid">${[['Occupied rooms',occ.length+' of '+S.rooms.length],['Billed this month',P(sum2(bs,'total'))],['Payments received',P(col(MO))],['Outstanding',P(sum2(bs,'due'))]].map(([x,y])=>`<div class="stat"><small>${x}</small><b>${y}</b></div>`).join('')}</div>
+<div class="g2"><div class="card"><h3>Revenue, last 6 months</h3>${svg}</div><div class="card"><h3>Room availability</h3><div class="seg"><div style="width:${occ.length/Math.max(1,S.rooms.length)*100}%;background:var(--lime2)"></div><div style="flex:1;background:var(--mint)"></div></div><div class="grid" style="margin:0">${bx('Occupied',occ.length,'var(--lime)')}${bx('Vacant',vac,'var(--mint)')}</div></div></div>
+<div class="g2"><div class="card"><h3>Rooms</h3><div class="tw"><table><tr><th>Room<th>Tenant<th>Rent<th>Bill<th>Status</tr>${S.rooms.map(r=>{let t=occ.find(x=>x.room==r.id);return `<tr><td>${E(r.no)}<td>${t?E(t.n):'-'}<td>${P(r.rent)}<td>${t?P(bill(t,MO).total):'-'}<td>${tag(t?status(t,MO):'Vacant')}`}).join('')}</table></div></div>
+<div class="card"><h3>Bill status</h3><div class="dn" style="background:conic-gradient(var(--lime2) 0 ${p1}%,#ffe08a ${p1}% ${p2}%,#f3a29b ${p2}% 100%)"><div>${a.length}<small class="mut">bills</small></div></div>
+${[['Paid','var(--lime2)'],['Unpaid','#ffe08a'],['Overdue','#f3a29b']].map(([k,c])=>`<div class="lk"><i style="background:${c}"></i>${k}<b>${st[k]}</b></div>`).join('')}
+<h3 style="margin-top:14px">Needs attention</h3>${od.map(t=>`<div class="lk">Room ${room(t.room).no}, ${E(t.n)}<b>${P(bill(t,MO).due)}</b></div>`).join('')}${nr.map(t=>`<div class="lk"><span class="mut">Room ${room(t.room).no}: no meter reading yet</span></div>`).join('')}${od.length+nr.length?'':'<p class="mut">All caught up.</p>'}</div></div>`},
+tenants(){let own=U.r=='owner',vac=S.rooms.filter(r=>!S.tenants.some(t=>t.room==r.id&&!t.out));
+return (own?`<div class="card"><h3>Check in a tenant</h3><form class="f" onsubmit="return H('checkin',event)"><label>Name<input name="n" required></label><label>Phone<input name="ph"></label><label>Emergency contact<input name="em"></label><label>Room<select name="room" required>${opt(vac.map(r=>[r.id,r.no+' - '+P(r.rent)]))}</select></label><label>Move-in date<input type="date" name="in" value="${today()}" required></label><label>Advance ₱<input type="number" class="n" name="adv" min="0" step=".01" value="0"></label><label>Deposit ₱<input type="number" class="n" name="dep" min="0" step=".01" value="0"></label><button ${vac.length?'':'disabled'}>Check in</button></form></div>`:'')+
+`<div class="card"><h3>Tenants and occupancy history</h3><div class="tw"><table><tr><th>Tenant<th>Phone<th>Emergency contact<th>Room<th>Check-in<th>Check-out<th>Advance<th>Deposit<th></tr>${S.tenants.slice().reverse().map(t=>`<tr><td>${E(t.n)}<td>${E(t.ph)}<td>${E(t.em)}<td>${room(t.room).no}<td>${t.in}<td>${t.out||tag('Occupied')}<td>${P(bal(t.id,'adv'))}<td>${P(bal(t.id,'dep'))}<td>${own&&!t.out?`<button class="sm d" onclick="checkout(${t.id})">Check out</button>`:''}`).join('')}</table></div></div>`},
+rooms(){return `<div class="card"><form class="f" onsubmit="return H('room',event)"><label>Room no.<input name="no" required></label><label>Floor<input type="number" name="f" value="1" class="n"></label><label>Monthly rent ₱<input type="number" name="rent" min="0" required></label><button>Add room</button></form></div>
+<div class="card"><div class="tw"><table><tr><th>Room<th>Floor<th>Rent<th>Status<th>Tenant<th></tr>${S.rooms.map(r=>{let t=S.tenants.find(x=>x.room==r.id&&!x.out);return `<tr><td>${E(r.no)}<td>${r.f}<td>${P(r.rent)}<td>${tag(t?'Occupied':'Vacant')}<td>${t?E(t.n):'-'}<td><button class="sm s" onclick="editRent(${r.id})">Edit rent</button>`}).join('')}</table></div></div>`},
+readings(){let a=act(MO),pm=addm(MO,-1),mi=S.misc.filter(x=>x.m==MO);
+return `<div class="top">${mp()}<span class="mut">Electricity ${P(rate('elec',MO))}/kWh, water ${P(rate('water',MO))}/m³</span></div><div class="card"><div class="tw"><table><tr><th>Room<th>Tenant<th>Prev kWh<th>Curr kWh<th>Prev m³<th>Curr m³<th>kWh<th>m³<th>Electric<th>Water<th></tr>${a.map(t=>{let rd=reading(t.room,MO),pv=reading(t.room,pm),b=bill(t,MO),f='rf'+t.room,x=(n,v)=>`<td><input form="${f}" class="n" type="number" step="any" min="0" name="${n}" value="${v??''}" required>`;
+return `<tr><td>${room(t.room).no}<form id="${f}" onsubmit="return H('reading',event)"><input type="hidden" name="room" value="${t.room}"><input type="hidden" name="m" value="${MO}"></form><td>${E(t.n)}${x('pe',rd?rd.pe:pv?.ce)}${x('ce',rd?.ce)}${x('pw',rd?rd.pw:pv?.cw)}${x('cw',rd?.cw)}<td>${b.el}<td>${b.wa}<td>${P(b.e)}<td>${P(b.w)}<td><button form="${f}" class="sm">Save</button>`}).join('')}</table></div></div>
+<div class="card"><h3>Other charges for ${ML(MO)}</h3><p class="mut">Wi-Fi and garbage fees come from Rates. Add one-off charges such as parking or damages here.</p><form class="f" onsubmit="return H('misc',event)"><input type="hidden" name="m" value="${MO}"><label>Room<select name="room">${opt(a.map(t=>[t.room,room(t.room).no+' - '+t.n]))}</select></label><label>Description<input name="desc" required></label><label>Amount ₱<input type="number" name="a" min="0.01" step=".01" required></label><button>Add charge</button></form>
+<div class="tw"><table>${mi.map(x=>`<tr><td>Room ${room(x.room).no}<td>${E(x.desc)}<td>${P(x.a)}<td><button class="sm d" onclick="delMisc(${x.id})">Remove</button>`).join('')}</table></div></div>`},
+payments(){let a=S.tenants.filter(t=>!t.out),L=S.ledger.filter(x=>x.t=='rent'||x.t=='advance'||x.t=='deposit').slice().sort((x,y)=>y.d.localeCompare(x.d)||y.id-x.id).slice(0,40);
+return `<div class="card"><h3>Record a payment</h3><form class="f" onsubmit="return H('pay',event)"><label>Tenant<select name="tid">${opt(a.map(t=>[t.id,room(t.room).no+' - '+t.n]))}</select></label><label>Type<select name="t"><option value="rent">Rent and utilities</option><option value="advance">Advance</option><option value="deposit">Deposit</option></select></label><label>For month<input type="month" name="m" value="${MO}" required></label><label>Amount ₱<input type="number" name="a" min="0.01" step=".01" required></label><label>Date paid<input type="date" name="d" value="${today()}" required></label><button>Save payment</button></form></div>
+<div class="card"><h3>Recent payments</h3><div class="tw"><table><tr><th>Date<th>Room<th>Tenant<th>Type<th>Month<th>Amount</tr>${L.map(x=>{let t=ten(x.tid);return `<tr><td>${x.d}<td>${room(t.room).no}<td>${E(t.n)}<td>${x.t}<td>${x.m}<td>${P(x.a)}`}).join('')}</table></div></div>`},
+billing(){return `<div class="top">${mp()}</div><div class="card"><div class="tw"><table><tr><th>Room<th>Tenant<th>Rent<th>Electric<th>Water<th>Other<th>Total<th>Credit<th>Paid<th>Due<th>Status<th></tr>${act(MO).map(t=>{let b=bill(t,MO);return `<tr><td>${b.r.no}<td>${E(t.n)}<td>${P(b.rent)}<td>${P(b.e)}<td>${P(b.w)}<td>${P(b.misc)}<td>${P(b.total)}<td>${P(b.credit)}<td>${P(b.paid)}<td><b>${P(b.due)}</b><td>${tag(status(t,MO))}<td><button class="sm" onclick="stmt(${t.id},MO)">Statement</button>`}).join('')}</table></div></div>`},
+ledger(){let t=ten(LT)||S.tenants[0];return t?`<div class="top"><label>Tenant<select onchange="LT=+this.value;R()">${opt(S.tenants.map(x=>[x.id,room(x.room).no+' - '+x.n+(x.out?' (checked out)':'')]),t.id)}</select></label></div>${LG(t)}`:'<div class="card">No tenants yet.</div>'},
+mine(){let t=ten(U.tid);return t?`<div class="top">${mp()}<button onclick="print()">Print statement</button></div><div class="card" id="stmt">${SH(t.id,MO)}</div>${LG(t)}`:'<div class="card">Your account is not linked to a tenant record. Ask the owner to check you in, then register again.</div>'},
+reports(){let ms=[],x=RF;while(x<=RT&&ms.length<60){ms.push(x);x=addm(x,1)}
+let pays=S.ledger.filter(l=>['rent','advance','deposit'].includes(l.t)&&l.d.slice(0,7)>=RF&&l.d.slice(0,7)<=RT),tot=t=>rnd(pays.filter(l=>l.t==t).reduce((s,l)=>s+l.a,0)),
+byM=ms.map(m=>[m,rnd(pays.filter(l=>l.d.slice(0,7)==m).reduce((s,l)=>s+l.a,0))]),mx=Math.max(1,...byM.map(x=>x[1])),
+ut=S.rooms.map(r=>{let rs=S.readings.filter(q=>q.room==r.id&&q.m>=RF&&q.m<=RT);return[r.no,rs.reduce((s,q)=>s+q.ce-q.pe,0),rs.reduce((s,q)=>s+q.cw-q.pw,0),rs.reduce((s,q)=>s+(q.ce-q.pe)*rate('elec',q.m),0),rs.reduce((s,q)=>s+(q.cw-q.pw)*rate('water',q.m),0)]}),
+out=S.tenants.map(t=>[t,rnd(ms.reduce((s,m)=>s+(active(t,m)&&reading(t.room,m)?bill(t,m).due:0),0))]).filter(x=>x[1]>0);
+return `<div class="top"><div class="f"><label>From<input type="month" value="${RF}" onchange="RF=this.value||RF;R()"></label><label>To<input type="month" value="${RT}" onchange="RT=this.value||RT;R()"></label></div><button onclick="print()">Print report</button></div>
+<div class="grid">${[['Total collected',tot('rent')+tot('advance')+tot('deposit')],['Rent and utilities',tot('rent')],['Advances',tot('advance')],['Deposits',tot('deposit')],['Outstanding balances',out.reduce((s,x)=>s+x[1],0)]].map(([a,b])=>`<div class="stat"><small>${a}</small><b>${P(b)}</b></div>`).join('')}</div>
+<div class="card"><h3>Collections by month</h3><table>${byM.map(([m,v])=>`<tr><td>${ML(m)}<td style="width:55%"><div class="bar" style="width:${v/mx*100}%"></div><td>${P(v)}`).join('')}</table></div>
+<div class="card"><h3>Utility consumption per room</h3><div class="tw"><table><tr><th>Room<th>kWh<th>Electric cost<th>m³<th>Water cost</tr>${ut.map(u=>`<tr><td>${E(u[0])}<td>${u[1]}<td>${P(u[3])}<td>${u[2]}<td>${P(u[4])}`).join('')}</table></div></div>
+<div class="card"><h3>Occupancy today</h3><div class="tw"><table><tr><th>Room<th>Status<th>Tenant<th>Since</tr>${S.rooms.map(r=>{let t=S.tenants.find(x=>x.room==r.id&&!x.out);return `<tr><td>${E(r.no)}<td>${tag(t?'Occupied':'Vacant')}<td>${t?E(t.n):'-'}<td>${t?t.in:'-'}`}).join('')}</table></div></div>
+<div class="card"><h3>Outstanding balances</h3><div class="tw"><table>${out.length?out.map(([t,v])=>`<tr><td>Room ${room(t.room).no}<td>${E(t.n)}<td>${P(v)}`).join(''):'<tr><td>Nothing outstanding in this period.'}</table></div></div>`},
+settings(){let L=[['elec','Electricity (₱ per kWh)'],['water','Water (₱ per m³)'],['wifi','Wi-Fi (₱ per room per month)'],['garbage','Garbage (₱ per room per month)']],nm=Object.fromEntries(L);
+return `<div class="card"><h3>Set a new rate</h3><p class="mut">A rate applies from its effective month onward. Earlier statements keep the rate that was active then.</p><form class="f" onsubmit="return H('rate',event)"><label>Rate<select name="t">${opt(L)}</select></label><label>Value ₱<input type="number" name="v" min="0" step=".01" required></label><label>Effective from<input type="month" name="e" value="${CUR}" required></label><button>Save rate</button></form></div>
+<div class="card"><h3>Rate history</h3><div class="tw"><table><tr><th>Rate<th>Value<th>Effective from<th></tr>${S.rates.slice().sort((a,b)=>a.t.localeCompare(b.t)||b.e.localeCompare(a.e)).map(r=>`<tr><td>${nm[r.t]}<td>${P(r.v)}<td>${r.e}<td>${rate(r.t,CUR)==r.v&&r.e<=CUR?tag('Paid').replace('Paid','Active'):''}`).join('')}</table></div></div>`}};
+function LG(t){let ad=0,dp=0,rows=S.ledger.filter(x=>x.tid==t.id).sort((a,b)=>a.d.localeCompare(b.d)||a.id-b.id).map(x=>{if(x.t=='advance')ad+=x.a;if(x.t=='apply')ad-=x.a;if(x.t=='deposit')dp+=x.a;if(x.t=='refund')dp-=x.a;return `<tr><td>${x.d}<td>${x.t}<td>${E(x.note)}<td>${P(x.a)}<td>${P(ad)}<td>${P(dp)}`}).join('');
+return `<div class="grid"><div class="stat"><small>Advance balance</small><b>${P(ad)}</b></div><div class="stat"><small>Deposit balance</small><b>${P(dp)}</b></div></div><div class="card"><h3>Ledger</h3><div class="tw"><table><tr><th>Date<th>Type<th>Note<th>Amount<th>Advance balance<th>Deposit balance</tr>${rows}</table></div></div>`}
+function SH(tid,m){let t=ten(tid),b=bill(t,m),nr='<span class="mut">No reading yet</span>';return `<h3>Billing statement - ${ML(m)}</h3><p>${E(t.n)}, Room ${b.r.no}</p><div class="tw"><table><tr><th>Charge<th>Details<th>Amount</tr><tr><td>Room rent<td><td>${P(b.rent)}
+<tr><td>Electricity<td>${b.rd?`${b.rd.pe} to ${b.rd.ce} = ${b.el} kWh × ${P(b.er)}`:nr}<td>${P(b.e)}<tr><td>Water<td>${b.rd?`${b.rd.pw} to ${b.rd.cw} = ${b.wa} m³ × ${P(b.wr)}`:nr}<td>${P(b.w)}
+${b.items.map(x=>`<tr><td>${E(x[0])}<td><td>${P(x[1])}`).join('')}<tr><th>Monthly total<th><th>${P(b.total)}<tr><td>Less advance credit applied<td><td>-${P(b.credit)}<tr><td>Less payments received<td><td>-${P(b.paid)}<tr><th>Amount due<th><th>${P(b.due)}</table></div>
+<p>${tag(status(t,m))} Advance balance ${P(bal(tid,'adv'))}, deposit balance ${P(bal(tid,'dep'))}</p>`}
+function stmt(tid,m){let can=U.r=='owner'&&bill(ten(tid),m).due>0&&bal(tid,'adv')>0;document.body.classList.add('pm');$('#m').innerHTML=`<div class="mb"><div class="card" id="stmt">${SH(tid,m)}</div><div class="row nop"><button onclick="print()">Print</button>${can?`<button class="s" onclick="applyAdv(${tid},'${m}')">Apply advance credit</button>`:''}<button class="s" onclick="closeM()">Close</button></div></div>`}
+function closeM(){$('#m').innerHTML='';document.body.classList.remove('pm')}
+function applyAdv(tid,m){let a=rnd(Math.min(bill(ten(tid),m).due,bal(tid,'adv')));if(a>0){S.ledger.push({id:nid(),tid,m,a,d:today(),t:'apply',note:'Advance applied to '+ML(m)+' bill'});save()}R();stmt(tid,m)}
+function checkout(id){let t=ten(id),dep=bal(id,'dep'),x=prompt(`Deposit held: ${P(dep)}\nAmount to deduct (damages, unpaid bills):`,'0');if(x===null)return;x=+x||0;if(x<0||x>dep)return alert('Deduction must be between 0 and the deposit held.');
+t.out=today();if(dep>0)S.ledger.push({id:nid(),tid:id,m:CUR,a:dep,d:today(),t:'refund',note:`Check-out: refunded ${P(dep-x)}, deducted ${P(x)}`});save();R()}
+function editRent(i){let v=prompt('New monthly rent (₱):',room(i).rent);if(v!==null&&+v>=0&&v.trim()!==''){room(i).rent=+v;save();R()}}
+function delMisc(i){S.misc=S.misc.filter(x=>x.id!=i);save();R()}
+function logout(){U=null;localStorage.removeItem('sb_user');tab='in';R()}
+const A={
+login(d){let u=S.users.find(x=>x.u==d.u.trim().toLowerCase()&&x.p==hash(d.p));if(!u)throw Error('Wrong username or password.');U=u;localStorage.setItem('sb_user',u.u)},
+reg(d){let u=d.u.trim().toLowerCase();if(S.users.some(x=>x.u==u))throw Error('That username is taken. Choose another.');if(d.p!=d.p2)throw Error('Passwords do not match.');let o={u,p:hash(d.p),n:d.n.trim(),r:d.r};
+if(d.r=='tenant'){let rm=S.rooms.find(r=>r.no==d.room.trim()),t=rm&&S.tenants.find(t=>t.room==rm.id&&!t.out);if(!t)throw Error('No tenant is checked in to that room. Ask the owner to check you in first.');o.tid=t.id}else if(d.code!='SMART2026')throw Error('Wrong staff / owner access code.');
+S.users.push(o);U=o;page='dash';localStorage.setItem('sb_user',u)},
+checkin(d){let id=nid(),t={id,n:d.n.trim(),ph:d.ph,em:d.em,room:+d.room,in:d.in,out:''};S.tenants.push(t);[['deposit',d.dep,'Security deposit'],['advance',d.adv,'Advance payment']].forEach(([k,v,n])=>{if(+v>0)S.ledger.push({id:nid(),tid:id,m:d.in.slice(0,7),a:+v,d:d.in,t:k,note:n})})},
+room(d){if(S.rooms.some(r=>r.no==d.no.trim()))throw Error('Room number already exists.');S.rooms.push({id:nid(),no:d.no.trim(),f:+d.f,rent:+d.rent})},
+reading(d){let r={room:+d.room,m:d.m,pe:+d.pe,ce:+d.ce,pw:+d.pw,cw:+d.cw};if(r.ce<r.pe||r.cw<r.pw)throw Error('Current reading cannot be lower than the previous reading.');let i=S.readings.findIndex(x=>x.room==r.room&&x.m==r.m);i<0?S.readings.push(r):S.readings[i]=r},
+misc(d){S.misc.push({id:nid(),room:+d.room,m:d.m,desc:d.desc.trim(),a:+d.a})},
+pay(d){if(!(+d.a>0))throw Error('Enter an amount above zero.');S.ledger.push({id:nid(),tid:+d.tid,m:d.m,a:+d.a,d:d.d,t:d.t,note:d.t=='rent'?'Rent & utilities':d.t=='advance'?'Advance payment':'Security deposit'})},
+rate(d){S.rates.push({t:d.t,v:+d.v,e:d.e})}};
+function H(n,e){e.preventDefault();try{A[n](Object.fromEntries(new FormData(e.target)));save();R()}catch(x){alert(x.message)}return false}
+if(!S)seed();U=S.users.find(x=>x.u==localStorage.getItem('sb_user'))||null;R();
+</script></body></html>
