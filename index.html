@@ -1,44 +1,118 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SmartBoard – Boarding House Management System</title>
 <style>
-:root{--ink:#1c211e;--lime:#e1f489;--lime2:#cfe86a;--mint:#d6f3e4;--sage:#b9d8c6;--bg:#e9efec;--b:#e6eae7;--r:#d9534f}
-*{box-sizing:border-box}body{margin:0;font:14px/1.5 Lato,"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--ink)}
-h1,h2,h3{margin:0 0 10px;letter-spacing:-.01em}.mut{color:#6a766f;font-size:13px}
-.app{display:flex;min-height:100vh;padding:14px}
-nav{width:210px;background:#fff;border-radius:16px 0 0 16px;padding:18px 12px;flex:none;border-right:1px solid var(--b)}
-.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:20px;padding:2px 8px 18px}
-.lg{width:22px;height:22px;display:grid;grid-template-columns:1fr 1fr;gap:2px}.lg i{background:var(--lime2);border-radius:2px}.lg i:nth-child(3n){background:var(--sage)}
-nav a{display:flex;gap:10px;padding:10px 12px;border-radius:10px;color:#58645d;cursor:pointer;margin-bottom:3px;font-weight:600}nav a span{width:18px;text-align:center}
-nav a.on{background:var(--lime);color:var(--ink)}nav a:hover:not(.on){background:#f1f5f2}
-.wrap{flex:1;min-width:0;background:#f6f8f7;border-radius:0 16px 16px 0;padding:20px 24px}
-.bar2{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}.bar2 h2{margin:0;font-size:24px;flex:1}
-.srch{padding:9px 14px;width:240px}
-.me{display:flex;align-items:center;gap:8px;font-size:13px;line-height:1.2}.av{width:34px;height:34px;border-radius:50%;background:var(--lime);display:grid;place-items:center;font-weight:800}
-.bell{position:relative;background:#fff;border:1px solid var(--b);width:38px;height:38px;padding:0}.bell b{position:absolute;top:-5px;right:-5px;background:var(--r);color:#fff;border-radius:99px;font-size:10px;padding:0 5px}
-.top{display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:10px;margin-bottom:14px}
-.card{background:#fff;border:1px solid var(--b);border-radius:14px;padding:16px;margin-bottom:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:16px}
-.g2{display:grid;grid-template-columns:2fr 1fr;gap:16px}
-.stat{background:#fff;border:1px solid var(--b);border-radius:14px;padding:14px 16px}.stat small{color:#6a766f}.stat b{display:block;font-size:26px}.grid .stat:first-child{background:var(--mint);border-color:var(--mint)}
-.tw{overflow-x:auto}table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid var(--b);text-align:left;white-space:nowrap}th{font-size:12.5px;color:#58645d;font-weight:700;background:#eef7f1}
-input,select,button{font:inherit;padding:8px 11px;border:1px solid var(--b);border-radius:10px;background:#fff;color:var(--ink)}
-button{background:var(--lime);border:0;font-weight:700;cursor:pointer}button.s{background:var(--mint)}button.d{background:#f9d9d7;color:#8c2a24}button.sm{padding:4px 11px;font-size:12px}button:disabled{opacity:.4}button:hover:not(:disabled){filter:brightness(.96)}
-:focus-visible{outline:2px solid var(--lime2);outline-offset:2px}
-.f{display:flex;gap:10px;flex-wrap:wrap;align-items:end}.col{display:flex;flex-direction:column;gap:10px}.row{display:flex;gap:8px;margin-top:10px}
-label{display:flex;flex-direction:column;font-size:12.5px;gap:3px;color:#4b574f;font-weight:600}.n{width:90px}[hidden]{display:none!important}
-.tag{padding:2px 10px;border-radius:8px;font-size:12px;font-weight:700}.Paid{background:#d6f3e4;color:#0d6a3a}.Unpaid{background:#fff1c9;color:#8a5a00}.Overdue{background:#fadbd8;color:#9b2c20}.Vacant{background:#e6e9ee;color:#556}.Occupied{background:var(--lime);color:#3b4a00}
-.bar{height:10px;background:var(--lime2);border-radius:5px}
-.dn{width:140px;height:140px;border-radius:50%;display:grid;place-items:center;margin:6px auto 12px}.dn div{width:96px;height:96px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center;line-height:1.2;font-weight:800;font-size:22px}
-.seg{display:flex;height:34px;border-radius:8px;overflow:hidden;margin-bottom:12px}
-.lk{display:flex;align-items:center;gap:8px;margin:5px 0}.lk i{width:12px;height:12px;border-radius:3px;flex:none}.lk b{margin-left:auto}
-.auth{min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr;background:var(--bg)}
-.ah{background:linear-gradient(160deg,var(--mint),var(--lime));padding:48px;display:flex;flex-direction:column;justify-content:center;gap:16px}.ah h1{font-size:34px;line-height:1.15;margin:0}.ah p{margin:0;max-width:420px}
-.pl{display:inline-flex;gap:8px;align-items:center;background:#fff;border-radius:99px;padding:8px 16px;font-weight:700;margin:0 8px 8px 0}.pl:before{content:'✓';background:var(--lime2);border-radius:50%;width:20px;height:20px;display:grid;place-items:center;font-size:12px}
-.af{display:grid;place-items:center;padding:24px}.af .card{width:100%;max-width:390px;padding:26px;margin:0}
-.tabs{display:flex;gap:6px;margin:14px 0;background:#eef2ef;padding:4px;border-radius:12px}.tabs button{flex:1;background:none}.tabs button.on{background:var(--lime)}
-#m:not(:empty){position:fixed;inset:0;background:#0008;overflow:auto;padding:20px;z-index:9}.mb{max-width:660px;margin:auto}
-@media(max-width:900px){.app{display:block;padding:0}nav{width:auto;display:flex;overflow-x:auto;padding:8px;border-radius:0}.logo{padding:6px 10px}nav a{white-space:nowrap;margin:0}.wrap{border-radius:0;padding:14px}.g2,.auth{grid-template-columns:1fr}.ah{padding:28px}.srch{width:100%}}
-@media print{nav,.nop,.top button,.bar2{display:none!important}body{background:#fff}.card{border:0}.app{padding:0}.wrap{background:#fff;padding:0}body.pm .wrap{display:none}#m:not(:empty){position:static;background:none;padding:0}}
-</style></head><body><div id="app"></div><div id="m"></div>
+:root{--ink:#25352f;--mut:#7d8984;--forest:#315f53;--forest2:#274f45;--bg:#f5f4f0;--b:#e6e7e2;--green:#315f53;--green2:#274f45;--gold:#dba179;--gold2:#a17660;--lime:#e9f0ec;--lime2:#557b70;--mint:#f1f3f1;--sage:#e1e9e4;--r:#cf6a55}
+*{box-sizing:border-box;scrollbar-width:thin;scrollbar-color:#ccd2ce transparent}
+body{margin:0;font:13.5px/1.55 "DM Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink);min-width:320px}
+h1,h2,h3{font-family:Manrope,"DM Sans",sans-serif;font-weight:600;margin:0 0 10px;color:var(--ink);letter-spacing:-.3px}h3{font-size:15px;margin-bottom:14px}
+.mut{color:var(--mut);font-size:12.5px}[hidden]{display:none!important}
+svg{flex:none}
+.app{display:flex;min-height:100vh}
+.sidebar{width:236px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;padding:26px 16px 18px;background:#fafaf8;border-right:1px solid var(--b);z-index:30;transition:transform .25s ease}
+.bm{display:block;width:36px;height:36px;flex:none;border-radius:10px;background:url(Images/smartboard.logo.png) 52% 27%/270% #2c4430}.bm.sm{width:35px;height:35px;border-radius:7px}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px 30px}.brand strong{display:block;font:700 17px/1 Manrope,sans-serif;letter-spacing:-.3px}.brand small{display:block;margin-top:6px;font-size:8px;letter-spacing:1.5px;color:#8a928f}
+.nav-label{margin:0 12px 10px;font-size:9px;font-weight:700;letter-spacing:1.3px;color:#a2aaa6}
+.sidebar nav{flex:1}
+.sidebar a{display:flex;align-items:center;gap:12px;height:42px;padding:0 12px;margin-bottom:2px;border-radius:8px;color:#67736e;font-size:13px;cursor:pointer;text-decoration:none}
+.sidebar a:hover{background:#f0f2ef;color:var(--forest)}
+.sidebar nav a.on{color:#fff;background:var(--forest);box-shadow:0 5px 13px #315f5320}
+.sb-bottom{margin-top:18px}
+.help-card{margin:14px 0;padding:16px;border-radius:11px;background:#eef2ef}.help-card .hi{width:26px;height:26px;margin-bottom:12px;display:grid;place-items:center;border-radius:50%;color:#fff;background:var(--forest);font-weight:700}
+.help-card strong{font:600 12.5px Manrope,sans-serif}.help-card p{margin:5px 0 10px;color:var(--mut);font-size:11px;line-height:1.5}
+.sidebar .help-card a{height:auto;padding:0;margin:0;gap:5px;color:var(--forest);font-size:11px;font-weight:700;background:none}
+.profile{display:flex;align-items:center;gap:10px;padding:16px 4px 0;border-top:1px solid var(--b)}
+.av{width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:50%;background:#d8e1dc;color:var(--forest);font-size:12px;font-weight:700}
+.profile b{display:block;font-size:12px}.profile small{display:block;color:#98a09c;font-size:10px;text-transform:capitalize}
+.backdrop{display:none}
+.main{flex:1;min-width:0}
+.hd{height:76px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--b);background:#ffffffbd;backdrop-filter:blur(12px);position:sticky;top:0;z-index:10}
+.prop{display:flex;align-items:center;gap:10px;margin-right:auto}.prop small{display:block;font-size:8px;letter-spacing:1.1px;color:#9ba29f;font-weight:700}.prop strong{display:block;margin-top:2px;font-size:12.5px}
+.ha{display:flex;align-items:center;gap:10px}
+.gs{width:240px;height:38px;padding:0 11px;display:flex;align-items:center;gap:8px;border:1px solid var(--b);border-radius:8px;background:#fff;color:#8c9691}
+.gs input{border:0;outline:0;background:transparent;padding:0;width:100%;font-size:12.5px;box-shadow:none!important}
+.bell{position:relative;width:38px;height:38px;padding:0;display:grid;place-items:center;border:1px solid var(--b);border-radius:8px;background:#fff;color:#66736d}.bell:hover:not(:disabled){background:#f5f7f5;color:var(--forest)}
+.bell b{position:absolute;top:-6px;right:-6px;min-width:17px;height:17px;display:grid;place-items:center;border-radius:99px;background:var(--r);color:#fff;font-size:9.5px;font-weight:700;padding:0 4px;border:2px solid #fff}
+.menu-btn{display:none;width:38px;height:38px;padding:0;place-items:center;border:1px solid var(--b);border-radius:8px;background:#fff;color:var(--ink)}
+.wrap{padding:34px;max-width:1500px;margin:auto}
+.welcome{margin-bottom:24px}.eyebrow{margin:0 0 8px;color:var(--gold2);font-size:9px;font-weight:700;letter-spacing:1.5px}.welcome h1{margin:0;font-size:27px;line-height:1.2;letter-spacing:-.9px}.welcome p:last-child{margin:6px 0 0;color:var(--mut);font-size:12.5px}
+.top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+.card{background:#fff;border:1px solid var(--b);border-radius:11px;padding:20px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px;margin-bottom:18px}.g2{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+.stat{background:#fff;border:1px solid var(--b);border-radius:11px;padding:16px 17px}.stat small{display:block;color:var(--mut);font-size:12px}.stat b{display:block;margin-top:3px;font:600 24px Manrope,sans-serif;letter-spacing:-.7px;color:var(--ink)}
+.mi{width:31px;height:31px;margin-bottom:14px;display:grid;place-items:center;border-radius:8px}.mi.coral{color:#ba694e;background:#f8ebe6}.mi.green{color:#527c6f;background:#eaf1ed}.mi.purple{color:#796c92;background:#efedf4}.mi.gold{color:#a87b48;background:#f7efe5}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse}
+th,td{padding:11px 12px;border-top:1px solid #efefec;text-align:left;white-space:nowrap}
+th{font-size:9.5px;color:#a4aaa7;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:#fafaf8;border-top:0}td{color:#5c6963}td b{color:var(--ink)}
+tr:hover td{background:#fafaf8}
+input,select,textarea{font:inherit;padding:9px 11px;border:1px solid var(--b);border-radius:8px;background:#fff;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:0;border-color:#719287;box-shadow:0 0 0 3px #71928720}
+button{font:600 12px "DM Sans",sans-serif;padding:10px 16px;border:0;border-radius:8px;background:var(--forest);color:#fff;cursor:pointer;transition:.15s;box-shadow:0 4px 10px #315f5322}
+button:hover:not(:disabled){background:var(--forest2);transform:translateY(-1px)}
+button.s{background:#fff;color:var(--forest);border:1px solid var(--b);box-shadow:none}button.s:hover:not(:disabled){background:#f5f7f5}
+button.d{background:#f8ebe6;color:#a24a36;box-shadow:none}button.d:hover:not(:disabled){background:#f3dbd2}
+button.sm{padding:5px 11px;font-size:11px}button:disabled{opacity:.4;cursor:default}
+.pb{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 15px}
+.f{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}.col{display:flex;flex-direction:column;gap:14px}.row{display:flex;gap:8px;margin-top:10px}
+label{display:flex;flex-direction:column;font-size:11px;gap:6px;color:#59655f;font-weight:600}.n{width:90px}
+.tag{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:600}.tag:before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor}
+.Paid{background:#e9f3ed;color:#3e765f}.Unpaid{background:#f8eee6;color:#a36843}.Overdue{background:#f8e4df;color:#b0503b}.Vacant{background:#f0f1ef;color:#6d7873}.Occupied{background:#efedf6;color:#696587}
+.bar{height:10px;border-radius:5px;background:var(--lime2)}
+.dn{width:140px;height:140px;border-radius:50%;display:grid;place-items:center;margin:6px auto 14px}.dn div{width:100px;height:100px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center;line-height:1.2;font:600 26px Manrope,sans-serif;color:var(--ink)}
+.seg{display:flex;height:26px;overflow:hidden;border-radius:8px;margin-bottom:14px}.lk{display:flex;align-items:center;gap:8px;margin:6px 0;color:#5c6963}.lk i{width:8px;height:8px;border-radius:50%;flex:none}.lk b{margin-left:auto;color:var(--ink)}
+.auth{min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr}
+.ah{background:linear-gradient(#2c4430e8,#1f3324f5),url(Images/home-banner01.jpg) center/cover #2c4430;color:#fff;padding:56px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+.ah h1{font-size:clamp(34px,4.6vw,56px);line-height:1.05;margin:0;color:#fff;letter-spacing:-1.5px}.ah p{margin:0;max-width:430px;color:#d3ddd5;font-size:15px}
+.logo{display:block}.lgi{width:150px;max-width:100%;display:block;mix-blend-mode:lighten}.lgt{font:700 26px Manrope,sans-serif;color:#fff}.lgt i{font-style:normal;color:#9fc4b4}.ah .lgi{width:190px}
+.pl{display:inline-flex;gap:8px;align-items:center;background:#ffffff12;border:1px solid #ffffff30;color:#e9efe9;padding:7px 14px;border-radius:99px;font-weight:600;margin:0 8px 8px 0;font-size:12.5px}.pl:before{content:'✓';color:#9fc4b4}
+.af{display:grid;place-items:center;padding:24px;background:var(--bg)}.af .card{width:100%;max-width:410px;padding:32px;margin:0;border-radius:14px;box-shadow:0 30px 80px #17251f1f}.af h2{font-size:26px;letter-spacing:-.6px}.af a{color:var(--forest);font-weight:600}
+.tabs{display:flex;gap:3px;padding:3px;margin:16px 0;background:#f3f4f2;border-radius:9px}.tabs button{flex:1;background:transparent;color:#8b9490;box-shadow:none;padding:8px}.tabs button:hover:not(:disabled){background:transparent;transform:none}.tabs button.on{background:#fff;color:#3e4f48;box-shadow:0 1px 4px #283b3215}
+#m:not(:empty){position:fixed;inset:0;background:#1c2b2688;backdrop-filter:blur(4px);overflow:auto;padding:24px;z-index:50}.mb{max-width:660px;margin:auto}.mb .card{border-radius:14px;box-shadow:0 30px 80px #17251f44}
+.cal{display:grid;overflow-x:auto;border:1px solid var(--b);border-radius:11px;background:#fff;margin-bottom:16px}
+.ch,.cr,.cc{padding:8px;border-bottom:1px solid #efefec;border-right:1px solid #efefec;font-size:12px}
+.ch{font-weight:700;color:#a4aaa7;background:#fafaf8;text-align:center;grid-row:1}.cr{font-weight:700;grid-column:1;display:flex;align-items:center;background:#fafaf8;color:var(--forest)}.cc{min-height:54px}.td{background:#f1f6f3}
+.cb{margin:6px 3px;padding:4px 10px;background:#e9f0ec;border-left:3px solid var(--forest);border-radius:6px;font-weight:600;cursor:pointer;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;z-index:1;color:var(--forest)}.cb small{display:block;color:var(--mut);font-weight:400}.cb.o{background:#f0f1ef;border-color:#9aa59b;color:#6d7873}
+@media(max-width:900px){
+.sidebar{position:fixed;inset:0 auto 0 0;transform:translateX(-100%);box-shadow:20px 0 60px #1b2d2633}
+body.so .sidebar{transform:none}body.so .backdrop{display:block;position:fixed;inset:0;z-index:20;background:#1c292466}
+.menu-btn{display:grid}.hd{padding:0 16px}.prop{margin-right:auto}.wrap{padding:22px 16px}.g2,.auth{grid-template-columns:1fr}.ah{padding:32px}.gs{width:170px}}
+@media(max-width:640px){.gs,.prop small{display:none}.pb{font-size:0;gap:0;padding:0 11px}.welcome h1{font-size:23px}}
+@media print{.sidebar,.backdrop,.hd,.welcome,.nop,.top button,.bar2{display:none!important}body{background:#fff}.card{border:0}.wrap{padding:0}body.pm .wrap{display:none}#m:not(:empty){position:static;background:none;padding:0;backdrop-filter:none}}
+
+/* ===== SmartBoard intro splash (logo pop) ===== */
+#sb-splash{position:fixed;inset:0;z-index:99999;background:#2c4430;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;transition:opacity .9s ease}
+#sb-splash.fade-out{opacity:0;pointer-events:none}
+#sb-splash.hidden{display:none}
+#sb-p1,#sb-p2{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .7s ease;pointer-events:none}
+#sb-p1.show,#sb-p2.show{opacity:1}
+#sb-splash img{display:block;width:clamp(170px,30vw,320px);height:auto;mix-blend-mode:lighten;margin:0}
+#sb-p1 img{animation:sbPulse 2s ease-in-out infinite}
+@keyframes sbPulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 30px rgba(217,182,106,.3))}50%{transform:scale(1.04);filter:drop-shadow(0 0 55px rgba(217,182,106,.55))}}
+#sb-logo-pop{opacity:0;transform:scale(.6)}
+#sb-logo-pop.animate{animation:sbPop .75s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes sbPop{from{opacity:0;transform:scale(.6);filter:blur(12px)}to{opacity:1;transform:scale(1);filter:blur(0)}}
+#sb-line{width:0;height:1px;background:linear-gradient(90deg,transparent,rgba(217,182,106,.7),transparent);margin-top:28px;transition:width 1s .4s ease}
+#sb-line.show{width:clamp(120px,25vw,280px)}
+#sb-tag{font:400 clamp(12px,2vw,16px)/1.4 "DM Sans",Manrope,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:rgba(240,238,231,.6);margin-top:22px;opacity:0;transform:translateY(10px);transition:opacity .6s .5s ease,transform .6s .5s ease}
+#sb-tag.show{opacity:1;transform:none}
+.sb-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);font:400 11px/1 "DM Sans",Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,238,231,.35);opacity:0;transition:opacity .6s 1s ease;animation:sbBob 1.8s ease-in-out infinite}
+#sb-p2.show .sb-hint{opacity:1}
+@keyframes sbBob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet"><link rel="icon" href="Images/smartboard.logo.png"></head><body>
+<div id="sb-splash" aria-hidden="true"><div id="sb-p1"><img src="Images/smartboard.logo.png" alt="SmartBoard"></div><div id="sb-p2"><img id="sb-logo-pop" src="Images/smartboard.logo.png" alt="SmartBoard"><div id="sb-line"></div><div id="sb-tag">Boarding house, made simple</div><div class="sb-hint">Click or scroll to continue</div></div></div>
+<script>
+(function(){var s=document.getElementById('sb-splash');if(!s)return;
+try{if(sessionStorage.getItem('sb_splash')){s.remove();return}sessionStorage.setItem('sb_splash','1')}catch(e){}
+var p1=document.getElementById('sb-p1'),p2=document.getElementById('sb-p2'),pop=document.getElementById('sb-logo-pop'),ln=document.getElementById('sb-line'),tg=document.getElementById('sb-tag'),done=false,ready=false;
+document.body.style.overflow='hidden';
+function end(){if(done)return;done=true;s.classList.add('fade-out');document.body.style.overflow='';['wheel','touchmove','keydown'].forEach(function(t){window.removeEventListener(t,skip)});setTimeout(function(){s.classList.add('hidden')},950)}
+function skip(){if(ready)end()}
+p1.classList.add('show');
+setTimeout(function(){p1.classList.remove('show');p2.classList.add('show');requestAnimationFrame(function(){pop.classList.add('animate')});
+setTimeout(function(){ln.classList.add('show');tg.classList.add('show')},200);
+setTimeout(function(){ready=true;['wheel','touchmove','keydown'].forEach(function(t){window.addEventListener(t,skip,{passive:true})});s.addEventListener('click',end,{once:true})},800);
+setTimeout(end,3600)},1800);
+})();
+</script>
+<div id="app"></div><div id="m"></div>
 <script>
 const $=s=>document.querySelector(s),E=s=>String(s??'').replace(/[&<>"]/g,c=>'&#'+c.charCodeAt(0)+';'),
 P=n=>'₱'+(+n||0).toLocaleString('en-PH',{minimumFractionDigits:2,maximumFractionDigits:2}),pad=n=>String(n).padStart(2,'0'),
@@ -65,39 +139,49 @@ S.rates=[['elec',12.5,-3],['water',30,-3],['wifi',100,-3],['garbage',50,-3],['el
 S.ledger.push({id:nid(),tid:t.id,m:addm(c,-4),a:S.rooms[i].rent,d:t.in,t:'deposit',note:'Security deposit'},{id:nid(),tid:t.id,m:addm(c,-4),a:S.rooms[i].rent,d:t.in,t:'advance',note:'Advance payment'});
 let e=1000+i*200,w=50+i*10;for(let k=3;k>=1;k--){let ce=e+80+(i*7+k*13)%50,cw=w+6+(i*3+k*5)%6;S.readings.push({room:t.room,m:addm(c,-k),pe:e,ce,pw:w,cw});e=ce;w=cw}});
 S.tenants.forEach(t=>{for(let k=3;k>=1;k--){let m=addm(c,-k);if(t.id==3&&k==1)continue;S.ledger.push({id:nid(),tid:t.id,m,a:bill(t,m).due,d:m+'-0'+(3+t.id),t:'rent',note:'Rent & utilities'})}});save()}
-const NAV={owner:[['dash','Dashboard','▦'],['tenants','Tenants','☺'],['rooms','Rooms','⌂'],['readings','Meter readings','ϟ'],['payments','Payments','₱'],['billing','Billing','▤'],['ledger','Ledger','☰'],['reports','Reports','◔'],['settings','Rates','⚙']],
-staff:[['dash','Dashboard','▦'],['tenants','Tenants','☺'],['readings','Meter readings','ϟ'],['payments','Payments','₱']],tenant:[['mine','My bill','▤']]};
+let CS=today();const sd=(x,n)=>{let d=new Date(x+'T00:00');d.setDate(d.getDate()+n);return mo(d)+'-'+pad(d.getDate())};
+const NAV={owner:[['dash','Dashboard','▦'],['calendar','Calendar','▥'],['tenants','Tenants','☺'],['rooms','Rooms','⌂'],['readings','Meter readings','ϟ'],['payments','Payments','₱'],['billing','Billing','▤'],['finance','Finance','¤'],['ledger','Ledger','☰'],['reports','Reports','◔'],['settings','Rates','⚙'],['users','Users','♟']],
+staff:[['dash','Dashboard','▦'],['calendar','Calendar','▥'],['tenants','Tenants','☺'],['readings','Meter readings','ϟ'],['payments','Payments','₱']],tenant:[['mine','My bill','▤']]};
+const IC={grid:'<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>',calendar:'<path d="M7 3v3M17 3v3M4 9h16"/><rect x="4" y="5" width="16" height="16" rx="3"/>',bed:'<path d="M3 19v-8M21 19v-6a3 3 0 0 0-3-3H9a3 3 0 0 0-3 3v6M3 16h18M6 10V7h5a3 3 0 0 1 3 3"/>',users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/>',bolt:'<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/>',wallet:'<path d="M3 7a2 2 0 0 1 2-2h13v4"/><path d="M3 7v11a2 2 0 0 0 2 2h15V9H5a2 2 0 0 1-2-2Z"/><path d="M16 14h.01"/>',file:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>',list:'<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',settings:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/>',search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>',plus:'<path d="M12 5v14M5 12h14"/>',arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',home:'<path d="m3 11 9-8 9 8M5 10v10h14V10"/>',logout:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>',alert:'<path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/>'},
+IK={dash:'grid',calendar:'calendar',tenants:'users',rooms:'bed',readings:'bolt',payments:'wallet',billing:'file',finance:'chart',ledger:'list',reports:'chart',settings:'settings',users:'user',mine:'file'},
+ic=(n,s=18)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[n]||''}</svg>`;
 const mp=()=>`<label>Month<input type="month" value="${MO}" onchange="MO=this.value||CUR;R()"></label>`;
-const LOGO='<div class="lg">'+'<i></i>'.repeat(6)+'</div>SmartBoard';
+const LOGO='<img class="lgi" src="Images/smartboard.logo.png" alt="SmartBoard" onerror="this.outerHTML=\'<b class=lgt>Smart<i>Board</i></b>\'">';
 function authView(){$('#app').innerHTML=`<div class="auth"><div class="ah"><div class="logo" style="padding:0">${LOGO}</div><h1>Run your boarding house without the paperwork</h1><p>Track tenants, bill electricity and water automatically, and see every payment in one place.</p><div><span class="pl">Tenant tracking</span><span class="pl">Utility auto-billing</span><span class="pl">Financial ledger</span></div></div>
-<div class="af"><div class="card"><h2>${tab=='in'?'Welcome back':'Create your account'}</h2><p class="mut">${tab=='in'?'Log in to manage your boarding house.':'Register as a tenant, staff member, or owner.'}</p>
+<div class="af"><div class="card"><h2>${tab=='in'?'Welcome back':'Create your account'}</h2><p class="mut">${tab=='in'?'Log in to manage your boarding house.':'Register as a tenant, staff member, or owner.'}</p><p class="mut"><a href="home.html" style="color:var(--forest)">← Back to main menu</a></p>
 <div class="tabs"><button class="${tab=='in'?'on':''}" onclick="tab='in';R()">Log in</button><button class="${tab=='up'?'on':''}" onclick="tab='up';R()">Register</button></div>
 ${tab=='in'?`<form class="col" onsubmit="return H('login',event)"><label>Username<input name="u" required autofocus></label><label>Password<input name="p" type="password" required></label><button>Log in</button></form>
 <p class="mut">Demo accounts: owner / owner123, staff / staff123, tenant / tenant123</p>`:
 `<form class="col" onsubmit="return H('reg',event)"><label>Full name<input name="n" required></label><label>Username<input name="u" required></label><label>Password (6+ characters)<input name="p" type="password" minlength="6" required></label><label>Confirm password<input name="p2" type="password" required></label>
 <label>I am a<select name="r" onchange="$('#x1').hidden=this.value!='tenant';$('#x2').hidden=this.value=='tenant'"><option value="tenant">Tenant</option><option value="staff">Staff / caretaker</option><option value="owner">Owner / admin</option></select></label>
 <label id="x1">Your room number<input name="room"></label><label id="x2" hidden>Staff / owner access code<input name="code"></label><button>Create account</button></form><p class="mut">Demo access code for staff and owner: SMART2026</p>`}</div></div></div>`}
-function R(){if(!U)return authView();let nv=NAV[U.r];if(!nv.some(x=>x[0]==page))page=nv[0][0];let od=U.r=='owner'?act(CUR).filter(t=>status(t,CUR)=='Overdue').length:0;
-$('#app').innerHTML=`<div class="app"><nav><div class="logo">${LOGO}</div>${nv.map(([k,l,i])=>`<a class="${k==page?'on':''}" onclick="page='${k}';R()"><span>${i}</span>${l}</a>`).join('')}<a onclick="logout()"><span>↩</span>Log out</a></nav>
-<div class="wrap"><div class="bar2"><h2>${nv.find(x=>x[0]==page)[1]}</h2><input class="srch nop" placeholder="Search this page..." oninput="flt(this.value)">${U.r=='owner'?`<button class="bell nop" title="Overdue accounts" onclick="page='billing';MO=CUR;R()">🔔${od?`<b>${od}</b>`:''}</button>`:''}<div class="me"><div class="av">${E(U.n[0]||'?').toUpperCase()}</div><div><b>${E(U.n)}</b><br><span class="mut">${U.r}</span></div></div></div>${V[page]()}</div></div>`}
+function R(){if(!U)return authView();document.body.classList.remove('so');let nv=NAV[U.r];if(!nv.some(x=>x[0]==page))page=nv[0][0];let own=U.r=='owner',od=own?act(CUR).filter(t=>status(t,CUR)=='Overdue').length:0,cur=nv.find(x=>x[0]==page),fn=(U.n||'').split(' ')[0],hr=new Date().getHours(),gr=hr<12?'Good morning':hr<18?'Good afternoon':'Good evening',dl=new Date().toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'}).toUpperCase();
+$('#app').innerHTML=`<div class="app"><aside class="sidebar"><div class="brand"><span class="bm"></span><div><strong>SmartBoard</strong><small>BOARDING HOUSE</small></div></div>
+<nav><p class="nav-label">WORKSPACE</p>${nv.map(([k,l])=>`<a class="${k==page?'on':''}" onclick="page='${k}';R()">${ic(IK[k])}<span>${l}</span></a>`).join('')}</nav>
+<div class="sb-bottom"><a href="home.html">${ic('home')}<span>Main menu</span></a><a onclick="logout()">${ic('logout')}<span>Log out</span></a>
+<div class="help-card"><div class="hi">?</div><strong>Need some help?</strong><p>Our support team is here for you.</p><a href="mailto:hello@smartboard.example">Get support ${ic('arrow',14)}</a></div>
+<div class="profile"><div class="av">${E(U.n[0]||'?').toUpperCase()}</div><div><b>${E(U.n)}</b><small>${U.r}</small></div></div></div></aside><div class="backdrop" onclick="document.body.classList.remove('so')"></div>
+<main class="main"><header class="hd nop"><button class="menu-btn" onclick="document.body.classList.add('so')" aria-label="Open menu">${ic('menu')}</button><div class="prop"><span class="bm sm"></span><div><small>PROPERTY</small><strong>SmartBoard Residence</strong></div></div>
+<div class="ha"><div class="gs">${ic('search',17)}<input class="srch" placeholder="Search this page..." oninput="flt(this.value)"></div>${own?`<button class="bell" title="Overdue accounts" aria-label="Overdue accounts" onclick="page='billing';MO=CUR;R()">${ic('bell')}${od?`<b>${od}</b>`:''}</button><button class="pb" onclick="page='tenants';R()">${ic('plus',17)} Check in tenant</button>`:''}</div></header>
+<div class="wrap"><section class="welcome"><p class="eyebrow">${dl}</p><h1>${page=='dash'?`${gr}, ${E(fn)}.`:cur[1]}</h1><p>${page=='dash'?'Here’s what’s happening at SmartBoard today.':'SmartBoard Residence'}</p></section>${V[page]()}</div></main></div>`}
 function flt(q){q=q.toLowerCase();document.querySelectorAll('.wrap tr').forEach(r=>{if(!r.querySelector('th'))r.hidden=!!q&&!r.textContent.toLowerCase().includes(q)})}
 const V={
 dash(){let a=act(MO),bs=a.map(t=>[t,bill(t,MO)]),occ=S.tenants.filter(t=>!t.out),vac=S.rooms.length-occ.length,
 col=m=>rnd(S.ledger.filter(x=>['rent','advance','deposit'].includes(x.t)&&x.d.slice(0,7)==m).reduce((s,x)=>s+x.a,0)),
 ms=[5,4,3,2,1,0].map(k=>addm(MO,-k)),vs=ms.map(col),mx=Math.max(1,...vs),X=i=>30+i*100,Y=v=>160-v/mx*130,st={Paid:0,Unpaid:0,Overdue:0};a.forEach(t=>st[status(t,MO)]++);
 let path=vs.map((v,i)=>i?`C${(X(i-1)+X(i))/2},${Y(vs[i-1])} ${(X(i-1)+X(i))/2},${Y(v)} ${X(i)},${Y(v)}`:`M${X(0)},${Y(v)}`).join(' '),
-svg=`<svg viewBox="0 0 560 190" style="width:100%"><defs><linearGradient id="gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe86a" stop-opacity=".55"/><stop offset="1" stop-color="#cfe86a" stop-opacity="0"/></linearGradient></defs><path d="${path} L${X(5)},160 L${X(0)},160Z" fill="url(#gr)"/><path d="${path}" fill="none" stroke="#b5d24a" stroke-width="2.5"/>${vs.map((v,i)=>`<circle cx="${X(i)}" cy="${Y(v)}" r="4.5" fill="#fff" stroke="#b5d24a" stroke-width="2"><title>${ML(ms[i])}: ${P(v)}</title></circle><text x="${X(i)}" y="182" font-size="11" text-anchor="middle" fill="#6a766f">${ML(ms[i]).slice(0,3)}</text>`).join('')}</svg>`,
+svg=`<svg viewBox="0 0 560 190" style="width:100%"><defs><linearGradient id="gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#557b70" stop-opacity=".55"/><stop offset="1" stop-color="#557b70" stop-opacity="0"/></linearGradient></defs><path d="${path} L${X(5)},160 L${X(0)},160Z" fill="url(#gr)"/><path d="${path}" fill="none" stroke="#315f53" stroke-width="2.5"/>${vs.map((v,i)=>`<circle cx="${X(i)}" cy="${Y(v)}" r="4.5" fill="#fff" stroke="#315f53" stroke-width="2"><title>${ML(ms[i])}: ${P(v)}</title></circle><text x="${X(i)}" y="182" font-size="11" text-anchor="middle" fill="#6a766f">${ML(ms[i]).slice(0,3)}</text>`).join('')}</svg>`,
 n=a.length||1,p1=st.Paid/n*100,p2=p1+st.Unpaid/n*100,od=a.filter(t=>status(t,MO)=='Overdue'),nr=a.filter(t=>!reading(t.room,MO)),
 bx=(l,v,c)=>`<div class="stat" style="background:${c};border:0"><small>${l}</small><b>${v}</b></div>`;
-return `<div class="top">${mp()}</div><div class="grid">${[['Occupied rooms',occ.length+' of '+S.rooms.length],['Billed this month',P(sum2(bs,'total'))],['Payments received',P(col(MO))],['Outstanding',P(sum2(bs,'due'))]].map(([x,y])=>`<div class="stat"><small>${x}</small><b>${y}</b></div>`).join('')}</div>
+return `<div class="top">${mp()}</div><div class="grid">${[['Occupied rooms',occ.length+' of '+S.rooms.length],['Billed this month',P(sum2(bs,'total'))],['Payments received',P(col(MO))],['Outstanding',P(sum2(bs,'due'))]].map(([x,y],i)=>`<div class="stat"><span class="mi ${['coral','purple','green','gold'][i]}">${ic(['bed','file','wallet','alert'][i])}</span><small>${x}</small><b>${y}</b></div>`).join('')}</div>
 <div class="g2"><div class="card"><h3>Revenue, last 6 months</h3>${svg}</div><div class="card"><h3>Room availability</h3><div class="seg"><div style="width:${occ.length/Math.max(1,S.rooms.length)*100}%;background:var(--lime2)"></div><div style="flex:1;background:var(--mint)"></div></div><div class="grid" style="margin:0">${bx('Occupied',occ.length,'var(--lime)')}${bx('Vacant',vac,'var(--mint)')}</div></div></div>
 <div class="g2"><div class="card"><h3>Rooms</h3><div class="tw"><table><tr><th>Room<th>Tenant<th>Rent<th>Bill<th>Status</tr>${S.rooms.map(r=>{let t=occ.find(x=>x.room==r.id);return `<tr><td>${E(r.no)}<td>${t?E(t.n):'-'}<td>${P(r.rent)}<td>${t?P(bill(t,MO).total):'-'}<td>${tag(t?status(t,MO):'Vacant')}`}).join('')}</table></div></div>
-<div class="card"><h3>Bill status</h3><div class="dn" style="background:conic-gradient(var(--lime2) 0 ${p1}%,#ffe08a ${p1}% ${p2}%,#f3a29b ${p2}% 100%)"><div>${a.length}<small class="mut">bills</small></div></div>
-${[['Paid','var(--lime2)'],['Unpaid','#ffe08a'],['Overdue','#f3a29b']].map(([k,c])=>`<div class="lk"><i style="background:${c}"></i>${k}<b>${st[k]}</b></div>`).join('')}
+<div class="card"><h3>Bill status</h3><div class="dn" style="background:conic-gradient(var(--lime2) 0 ${p1}%,#dba179 ${p1}% ${p2}%,#cf6a55 ${p2}% 100%)"><div>${a.length}<small class="mut">bills</small></div></div>
+${[['Paid','var(--lime2)'],['Unpaid','#dba179'],['Overdue','#cf6a55']].map(([k,c])=>`<div class="lk"><i style="background:${c}"></i>${k}<b>${st[k]}</b></div>`).join('')}
 <h3 style="margin-top:14px">Needs attention</h3>${od.map(t=>`<div class="lk">Room ${room(t.room).no}, ${E(t.n)}<b>${P(bill(t,MO).due)}</b></div>`).join('')}${nr.map(t=>`<div class="lk"><span class="mut">Room ${room(t.room).no}: no meter reading yet</span></div>`).join('')}${od.length+nr.length?'':'<p class="mut">All caught up.</p>'}</div></div>`},
 tenants(){let own=U.r=='owner',vac=S.rooms.filter(r=>!S.tenants.some(t=>t.room==r.id&&!t.out));
 return (own?`<div class="card"><h3>Check in a tenant</h3><form class="f" onsubmit="return H('checkin',event)"><label>Name<input name="n" required></label><label>Phone<input name="ph"></label><label>Emergency contact<input name="em"></label><label>Room<select name="room" required>${opt(vac.map(r=>[r.id,r.no+' - '+P(r.rent)]))}</select></label><label>Move-in date<input type="date" name="in" value="${today()}" required></label><label>Advance ₱<input type="number" class="n" name="adv" min="0" step=".01" value="0"></label><label>Deposit ₱<input type="number" class="n" name="dep" min="0" step=".01" value="0"></label><button ${vac.length?'':'disabled'}>Check in</button></form></div>`:'')+
-`<div class="card"><h3>Tenants and occupancy history</h3><div class="tw"><table><tr><th>Tenant<th>Phone<th>Emergency contact<th>Room<th>Check-in<th>Check-out<th>Advance<th>Deposit<th></tr>${S.tenants.slice().reverse().map(t=>`<tr><td>${E(t.n)}<td>${E(t.ph)}<td>${E(t.em)}<td>${room(t.room).no}<td>${t.in}<td>${t.out||tag('Occupied')}<td>${P(bal(t.id,'adv'))}<td>${P(bal(t.id,'dep'))}<td>${own&&!t.out?`<button class="sm d" onclick="checkout(${t.id})">Check out</button>`:''}`).join('')}</table></div></div>`},
+`<div class="card"><h3>Tenants and occupancy history</h3><div class="tw"><table><tr><th>Tenant<th>Phone<th>Emergency contact<th>Room<th>Check-in<th>Check-out<th>Advance<th>Deposit<th></tr>${S.tenants.slice().reverse().map(t=>`<tr><td>${E(t.n)}<td>${E(t.ph)}<td>${E(t.em)}<td>${room(t.room).no}<td>${t.in}<td>${t.out||tag('Occupied')}<td>${P(bal(t.id,'adv'))}<td>${P(bal(t.id,'dep'))}<td><button class="sm s" onclick="editT(${t.id})">Edit</button> ${own&&!t.out?`<button class="sm d" onclick="checkout(${t.id})">Check out</button>`:''}`).join('')}</table></div></div>`},
 rooms(){return `<div class="card"><form class="f" onsubmit="return H('room',event)"><label>Room no.<input name="no" required></label><label>Floor<input type="number" name="f" value="1" class="n"></label><label>Monthly rent ₱<input type="number" name="rent" min="0" required></label><button>Add room</button></form></div>
 <div class="card"><div class="tw"><table><tr><th>Room<th>Floor<th>Rent<th>Status<th>Tenant<th></tr>${S.rooms.map(r=>{let t=S.tenants.find(x=>x.room==r.id&&!x.out);return `<tr><td>${E(r.no)}<td>${r.f}<td>${P(r.rent)}<td>${tag(t?'Occupied':'Vacant')}<td>${t?E(t.n):'-'}<td><button class="sm s" onclick="editRent(${r.id})">Edit rent</button>`}).join('')}</table></div></div>`},
 readings(){let a=act(MO),pm=addm(MO,-1),mi=S.misc.filter(x=>x.m==MO);
@@ -122,6 +206,16 @@ return `<div class="top"><div class="f"><label>From<input type="month" value="${
 <div class="card"><h3>Utility consumption per room</h3><div class="tw"><table><tr><th>Room<th>kWh<th>Electric cost<th>m³<th>Water cost</tr>${ut.map(u=>`<tr><td>${E(u[0])}<td>${u[1]}<td>${P(u[3])}<td>${u[2]}<td>${P(u[4])}`).join('')}</table></div></div>
 <div class="card"><h3>Occupancy today</h3><div class="tw"><table><tr><th>Room<th>Status<th>Tenant<th>Since</tr>${S.rooms.map(r=>{let t=S.tenants.find(x=>x.room==r.id&&!x.out);return `<tr><td>${E(r.no)}<td>${tag(t?'Occupied':'Vacant')}<td>${t?E(t.n):'-'}<td>${t?t.in:'-'}`}).join('')}</table></div></div>
 <div class="card"><h3>Outstanding balances</h3><div class="tw"><table>${out.length?out.map(([t,v])=>`<tr><td>Room ${room(t.room).no}<td>${E(t.n)}<td>${P(v)}`).join(''):'<tr><td>Nothing outstanding in this period.'}</table></div></div>`},
+calendar(){let ds=[...Array(14)].map((_,i)=>sd(CS,i)),td=today(),
+hd='<div class="ch" style="grid-column:1"></div>'+ds.map((x,i)=>`<div class="ch${x==td?' td':''}" style="grid-column:${i+2}">${new Date(x+'T00:00').toLocaleString('en',{weekday:'short'})} ${+x.slice(8)}</div>`).join(''),
+rows=S.rooms.map((r,ri)=>`<div class="cr" style="grid-row:${ri+2}">Room ${E(r.no)}</div>`+ds.map((x,i)=>`<div class="cc${x==td?' td':''}" style="grid-row:${ri+2};grid-column:${i+2}"></div>`).join('')+S.tenants.filter(t=>t.room==r.id&&t.in<=ds[13]&&(!t.out||t.out>=ds[0])).map(t=>{let a=t.in<=ds[0]?0:ds.findIndex(x=>x>=t.in),e=t.out?ds.map(x=>x<=t.out).lastIndexOf(true):13;return `<div class="cb${t.out?' o':''}" style="grid-row:${ri+2};grid-column:${a+2}/${e+3}" onclick="editT(${t.id})" title="Click to edit">${E(t.n)}<small>${t.out?'Checked out':'Checked in'}</small></div>`}).join('')).join('');
+return `<div class="top"><div class="f"><button class="s" onclick="CS=sd(CS,-7);R()">← Previous 7 days</button><button class="s" onclick="CS=today();R()">Today</button><button class="s" onclick="CS=sd(CS,7);R()">Next 7 days →</button></div><b>${ML(CS.slice(0,7))}</b></div><div class="cal" style="grid-template-columns:100px repeat(14,minmax(60px,1fr))">${hd}${rows}</div><p class="mut">Each bar is a stay. Click a bar to edit that tenant. Yellow marks today.</p>`},
+finance(){let e=S.exp.filter(x=>x.d.slice(0,7)==MO),inc=S.ledger.filter(x=>['rent','advance','deposit'].includes(x.t)&&x.d.slice(0,7)==MO),ti=rnd(inc.reduce((s,x)=>s+x.a,0)),te=rnd(e.reduce((s,x)=>s+x.a,0)),
+rows=[...inc.map(x=>({d:x.d,n:'Payment from '+ten(x.tid).n,c:x.t,a:x.a})),...e.map(x=>({d:x.d,n:x.desc,c:x.cat,a:-x.a,id:x.id}))].sort((a,b)=>a.d.localeCompare(b.d));
+return `<div class="top">${mp()}</div><div class="grid">${[['Income',P(ti)],['Expenses',P(te)],['Net',P(ti-te)]].map(([a,b])=>`<div class="stat"><small>${a}</small><b>${b}</b></div>`).join('')}</div>
+<div class="card"><h3>Add expense</h3><form class="f" onsubmit="return H('exp',event)"><label>Date<input type="date" name="d" value="${today()}" required></label><label>Category<select name="cat"><option>Maintenance</option><option>Supplies</option><option>Utilities</option><option>Salaries</option><option>Other</option></select></label><label>Description<input name="desc" required></label><label>Amount ₱<input type="number" name="a" min="0.01" step=".01" required></label><button>Add expense</button></form></div>
+<div class="card"><h3>Transactions</h3><div class="tw"><table><tr><th>Date<th>Name / origin<th>Category<th>Value<th></tr>${rows.map(x=>`<tr><td>${x.d}<td>${E(x.n)}<td>${x.c}<td style="color:${x.a<0?'#c0392b':'#14803a'}"><b>${x.a<0?'-':''}${P(Math.abs(x.a))}</b><td>${x.id?`<button class="sm d" onclick="delExp(${x.id})">Remove</button>`:''}`).join('')}</table></div></div>`},
+users(){return `<div class="card"><h3>Roles</h3><p class="mut"><b>Owner</b>: everything, including users and rates. <b>Staff</b>: calendar, tenants, meter readings and payments. <b>Tenant</b>: own bill and ledger only.</p><div class="tw"><table><tr><th>Name<th>Username<th>Role<th></tr>${S.users.map((u,i)=>`<tr><td>${E(u.n)}<td>${E(u.u)}<td><select onchange="setRole(${i},this.value)" ${u.u==U.u?'disabled':''}>${opt([['owner','Owner'],['staff','Staff'],['tenant','Tenant']],u.r)}</select><td>${u.u==U.u?'<span class="mut">You</span>':`<button class="sm d" onclick="delUser(${i})">Remove</button>`}`).join('')}</table></div></div>`},
 settings(){let L=[['elec','Electricity (₱ per kWh)'],['water','Water (₱ per m³)'],['wifi','Wi-Fi (₱ per room per month)'],['garbage','Garbage (₱ per room per month)']],nm=Object.fromEntries(L);
 return `<div class="card"><h3>Set a new rate</h3><p class="mut">A rate applies from its effective month onward. Earlier statements keep the rate that was active then.</p><form class="f" onsubmit="return H('rate',event)"><label>Rate<select name="t">${opt(L)}</select></label><label>Value ₱<input type="number" name="v" min="0" step=".01" required></label><label>Effective from<input type="month" name="e" value="${CUR}" required></label><button>Save rate</button></form></div>
 <div class="card"><h3>Rate history</h3><div class="tw"><table><tr><th>Rate<th>Value<th>Effective from<th></tr>${S.rates.slice().sort((a,b)=>a.t.localeCompare(b.t)||b.e.localeCompare(a.e)).map(r=>`<tr><td>${nm[r.t]}<td>${P(r.v)}<td>${r.e}<td>${rate(r.t,CUR)==r.v&&r.e<=CUR?tag('Paid').replace('Paid','Active'):''}`).join('')}</table></div></div>`}};
@@ -139,6 +233,10 @@ t.out=today();if(dep>0)S.ledger.push({id:nid(),tid:id,m:CUR,a:dep,d:today(),t:'r
 function editRent(i){let v=prompt('New monthly rent (₱):',room(i).rent);if(v!==null&&+v>=0&&v.trim()!==''){room(i).rent=+v;save();R()}}
 function delMisc(i){S.misc=S.misc.filter(x=>x.id!=i);save();R()}
 function logout(){U=null;localStorage.removeItem('sb_user');tab='in';R()}
+function editT(id){let t=ten(id);$('#m').innerHTML=`<div class="mb"><div class="card"><h3>Edit tenant</h3><form class="col" onsubmit="return H('edit',event)"><input type="hidden" name="id" value="${id}"><label>Name<input name="n" value="${E(t.n)}" required></label><label>Phone<input name="ph" value="${E(t.ph)}"></label><label>Emergency contact<input name="em" value="${E(t.em)}"></label><label>Move-in date<input type="date" name="in" value="${t.in}" required></label><label>Room<input value="${E(room(t.room).no)}" disabled></label><p class="mut">To move a tenant to another room, check them out and check them in again.</p><div class="row"><button>Save changes</button><button type="button" class="s" onclick="closeM()">Cancel</button></div></form></div></div>`}
+function delExp(i){if(confirm('Remove this expense?')){S.exp=S.exp.filter(x=>x.id!=i);save();R()}}
+function setRole(i,r){let u=S.users[i];if(r=='tenant'&&!u.tid){alert('A tenant account must be linked to a tenant record. Ask them to register as a tenant with their room number.');return R()}u.r=r;save();R()}
+function delUser(i){if(confirm('Remove this account?')){S.users.splice(i,1);save();R()}}
 const A={
 login(d){let u=S.users.find(x=>x.u==d.u.trim().toLowerCase()&&x.p==hash(d.p));if(!u)throw Error('Wrong username or password.');U=u;localStorage.setItem('sb_user',u.u)},
 reg(d){let u=d.u.trim().toLowerCase();if(S.users.some(x=>x.u==u))throw Error('That username is taken. Choose another.');if(d.p!=d.p2)throw Error('Passwords do not match.');let o={u,p:hash(d.p),n:d.n.trim(),r:d.r};
@@ -149,7 +247,9 @@ room(d){if(S.rooms.some(r=>r.no==d.no.trim()))throw Error('Room number already e
 reading(d){let r={room:+d.room,m:d.m,pe:+d.pe,ce:+d.ce,pw:+d.pw,cw:+d.cw};if(r.ce<r.pe||r.cw<r.pw)throw Error('Current reading cannot be lower than the previous reading.');let i=S.readings.findIndex(x=>x.room==r.room&&x.m==r.m);i<0?S.readings.push(r):S.readings[i]=r},
 misc(d){S.misc.push({id:nid(),room:+d.room,m:d.m,desc:d.desc.trim(),a:+d.a})},
 pay(d){if(!(+d.a>0))throw Error('Enter an amount above zero.');S.ledger.push({id:nid(),tid:+d.tid,m:d.m,a:+d.a,d:d.d,t:d.t,note:d.t=='rent'?'Rent & utilities':d.t=='advance'?'Advance payment':'Security deposit'})},
+edit(d){let t=ten(+d.id);if(t.out&&d.in>t.out)throw Error('Move-in date cannot be after the check-out date.');t.n=d.n.trim();t.ph=d.ph;t.em=d.em;t.in=d.in;closeM()},
+exp(d){if(!(+d.a>0))throw Error('Enter an amount above zero.');S.exp.push({id:nid(),d:d.d,cat:d.cat,desc:d.desc.trim(),a:+d.a})},
 rate(d){S.rates.push({t:d.t,v:+d.v,e:d.e})}};
 function H(n,e){e.preventDefault();try{A[n](Object.fromEntries(new FormData(e.target)));save();R()}catch(x){alert(x.message)}return false}
-if(!S)seed();U=S.users.find(x=>x.u==localStorage.getItem('sb_user'))||null;R();
+if(!S)seed();S.exp=S.exp||[];U=S.users.find(x=>x.u==localStorage.getItem('sb_user'))||null;if(location.hash=='#register')tab='up';R();
 </script></body></html>
