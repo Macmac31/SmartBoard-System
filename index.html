@@ -1,81 +1,47 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SmartBoard – Boarding House Management System</title>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SmartBoard Residence – Find your place</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Manrope:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#25352f;--mut:#7d8984;--forest:#315f53;--forest2:#274f45;--bg:#f5f4f0;--b:#e6e7e2;--green:#315f53;--green2:#274f45;--gold:#dba179;--gold2:#a17660;--lime:#e9f0ec;--lime2:#557b70;--mint:#f1f3f1;--sage:#e1e9e4;--r:#cf6a55}
-*{box-sizing:border-box;scrollbar-width:thin;scrollbar-color:#ccd2ce transparent}
-body{margin:0;font:13.5px/1.55 "DM Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink);min-width:320px}
-h1,h2,h3{font-family:Manrope,"DM Sans",sans-serif;font-weight:600;margin:0 0 10px;color:var(--ink);letter-spacing:-.3px}h3{font-size:15px;margin-bottom:14px}
-.mut{color:var(--mut);font-size:12.5px}[hidden]{display:none!important}
-svg{flex:none}
-.app{display:flex;min-height:100vh}
-.sidebar{width:236px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;padding:26px 16px 18px;background:#fafaf8;border-right:1px solid var(--b);z-index:30;transition:transform .25s ease}
-.bm{display:block;width:36px;height:36px;flex:none;border-radius:10px;background:url(Images/smartboard.logo.png) 52% 27%/270% #2c4430}.bm.sm{width:35px;height:35px;border-radius:7px}
-.brand{display:flex;align-items:center;gap:12px;padding:0 8px 30px}.brand strong{display:block;font:700 17px/1 Manrope,sans-serif;letter-spacing:-.3px}.brand small{display:block;margin-top:6px;font-size:8px;letter-spacing:1.5px;color:#8a928f}
-.nav-label{margin:0 12px 10px;font-size:9px;font-weight:700;letter-spacing:1.3px;color:#a2aaa6}
-.sidebar nav{flex:1}
-.sidebar a{display:flex;align-items:center;gap:12px;height:42px;padding:0 12px;margin-bottom:2px;border-radius:8px;color:#67736e;font-size:13px;cursor:pointer;text-decoration:none}
-.sidebar a:hover{background:#f0f2ef;color:var(--forest)}
-.sidebar nav a.on{color:#fff;background:var(--forest);box-shadow:0 5px 13px #315f5320}
-.sb-bottom{margin-top:18px}
-.help-card{margin:14px 0;padding:16px;border-radius:11px;background:#eef2ef}.help-card .hi{width:26px;height:26px;margin-bottom:12px;display:grid;place-items:center;border-radius:50%;color:#fff;background:var(--forest);font-weight:700}
-.help-card strong{font:600 12.5px Manrope,sans-serif}.help-card p{margin:5px 0 10px;color:var(--mut);font-size:11px;line-height:1.5}
-.sidebar .help-card a{height:auto;padding:0;margin:0;gap:5px;color:var(--forest);font-size:11px;font-weight:700;background:none}
-.profile{display:flex;align-items:center;gap:10px;padding:16px 4px 0;border-top:1px solid var(--b)}
-.av{width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:50%;background:#d8e1dc;color:var(--forest);font-size:12px;font-weight:700}
-.profile b{display:block;font-size:12px}.profile small{display:block;color:#98a09c;font-size:10px;text-transform:capitalize}
-.backdrop{display:none}
-.main{flex:1;min-width:0}
-.hd{height:76px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--b);background:#ffffffbd;backdrop-filter:blur(12px);position:sticky;top:0;z-index:10}
-.prop{display:flex;align-items:center;gap:10px;margin-right:auto}.prop small{display:block;font-size:8px;letter-spacing:1.1px;color:#9ba29f;font-weight:700}.prop strong{display:block;margin-top:2px;font-size:12.5px}
-.ha{display:flex;align-items:center;gap:10px}
-.gs{width:240px;height:38px;padding:0 11px;display:flex;align-items:center;gap:8px;border:1px solid var(--b);border-radius:8px;background:#fff;color:#8c9691}
-.gs input{border:0;outline:0;background:transparent;padding:0;width:100%;font-size:12.5px;box-shadow:none!important}
-.bell{position:relative;width:38px;height:38px;padding:0;display:grid;place-items:center;border:1px solid var(--b);border-radius:8px;background:#fff;color:#66736d}.bell:hover:not(:disabled){background:#f5f7f5;color:var(--forest)}
-.bell b{position:absolute;top:-6px;right:-6px;min-width:17px;height:17px;display:grid;place-items:center;border-radius:99px;background:var(--r);color:#fff;font-size:9.5px;font-weight:700;padding:0 4px;border:2px solid #fff}
-.menu-btn{display:none;width:38px;height:38px;padding:0;place-items:center;border:1px solid var(--b);border-radius:8px;background:#fff;color:var(--ink)}
-.wrap{padding:34px;max-width:1500px;margin:auto}
-.welcome{margin-bottom:24px}.eyebrow{margin:0 0 8px;color:var(--gold2);font-size:9px;font-weight:700;letter-spacing:1.5px}.welcome h1{margin:0;font-size:27px;line-height:1.2;letter-spacing:-.9px}.welcome p:last-child{margin:6px 0 0;color:var(--mut);font-size:12.5px}
-.top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:16px}
-.card{background:#fff;border:1px solid var(--b);border-radius:11px;padding:20px;margin-bottom:18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px;margin-bottom:18px}.g2{display:grid;grid-template-columns:2fr 1fr;gap:18px}
-.stat{background:#fff;border:1px solid var(--b);border-radius:11px;padding:16px 17px}.stat small{display:block;color:var(--mut);font-size:12px}.stat b{display:block;margin-top:3px;font:600 24px Manrope,sans-serif;letter-spacing:-.7px;color:var(--ink)}
-.mi{width:31px;height:31px;margin-bottom:14px;display:grid;place-items:center;border-radius:8px}.mi.coral{color:#ba694e;background:#f8ebe6}.mi.green{color:#527c6f;background:#eaf1ed}.mi.purple{color:#796c92;background:#efedf4}.mi.gold{color:#a87b48;background:#f7efe5}
-.tw{overflow-x:auto}table{width:100%;border-collapse:collapse}
-th,td{padding:11px 12px;border-top:1px solid #efefec;text-align:left;white-space:nowrap}
-th{font-size:9.5px;color:#a4aaa7;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:#fafaf8;border-top:0}td{color:#5c6963}td b{color:var(--ink)}
-tr:hover td{background:#fafaf8}
-input,select,textarea{font:inherit;padding:9px 11px;border:1px solid var(--b);border-radius:8px;background:#fff;color:var(--ink)}
-input:focus,select:focus,textarea:focus{outline:0;border-color:#719287;box-shadow:0 0 0 3px #71928720}
-button{font:600 12px "DM Sans",sans-serif;padding:10px 16px;border:0;border-radius:8px;background:var(--forest);color:#fff;cursor:pointer;transition:.15s;box-shadow:0 4px 10px #315f5322}
-button:hover:not(:disabled){background:var(--forest2);transform:translateY(-1px)}
-button.s{background:#fff;color:var(--forest);border:1px solid var(--b);box-shadow:none}button.s:hover:not(:disabled){background:#f5f7f5}
-button.d{background:#f8ebe6;color:#a24a36;box-shadow:none}button.d:hover:not(:disabled){background:#f3dbd2}
-button.sm{padding:5px 11px;font-size:11px}button:disabled{opacity:.4;cursor:default}
-.pb{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 15px}
-.f{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}.col{display:flex;flex-direction:column;gap:14px}.row{display:flex;gap:8px;margin-top:10px}
-label{display:flex;flex-direction:column;font-size:11px;gap:6px;color:#59655f;font-weight:600}.n{width:90px}
-.tag{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:600}.tag:before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor}
-.Paid{background:#e9f3ed;color:#3e765f}.Unpaid{background:#f8eee6;color:#a36843}.Overdue{background:#f8e4df;color:#b0503b}.Vacant{background:#f0f1ef;color:#6d7873}.Occupied{background:#efedf6;color:#696587}
-.bar{height:10px;border-radius:5px;background:var(--lime2)}
-.dn{width:140px;height:140px;border-radius:50%;display:grid;place-items:center;margin:6px auto 14px}.dn div{width:100px;height:100px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center;line-height:1.2;font:600 26px Manrope,sans-serif;color:var(--ink)}
-.seg{display:flex;height:26px;overflow:hidden;border-radius:8px;margin-bottom:14px}.lk{display:flex;align-items:center;gap:8px;margin:6px 0;color:#5c6963}.lk i{width:8px;height:8px;border-radius:50%;flex:none}.lk b{margin-left:auto;color:var(--ink)}
-.auth{min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr}
-.ah{background:linear-gradient(#2c4430e8,#1f3324f5),url(Images/home-banner01.jpg) center/cover #2c4430;color:#fff;padding:56px;display:flex;flex-direction:column;justify-content:center;gap:16px}
-.ah h1{font-size:clamp(34px,4.6vw,56px);line-height:1.05;margin:0;color:#fff;letter-spacing:-1.5px}.ah p{margin:0;max-width:430px;color:#d3ddd5;font-size:15px}
-.logo{display:block}.lgi{width:150px;max-width:100%;display:block;mix-blend-mode:lighten}.lgt{font:700 26px Manrope,sans-serif;color:#fff}.lgt i{font-style:normal;color:#9fc4b4}.ah .lgi{width:190px}
-.pl{display:inline-flex;gap:8px;align-items:center;background:#ffffff12;border:1px solid #ffffff30;color:#e9efe9;padding:7px 14px;border-radius:99px;font-weight:600;margin:0 8px 8px 0;font-size:12.5px}.pl:before{content:'✓';color:#9fc4b4}
-.af{display:grid;place-items:center;padding:24px;background:var(--bg)}.af .card{width:100%;max-width:410px;padding:32px;margin:0;border-radius:14px;box-shadow:0 30px 80px #17251f1f}.af h2{font-size:26px;letter-spacing:-.6px}.af a{color:var(--forest);font-weight:600}
-.tabs{display:flex;gap:3px;padding:3px;margin:16px 0;background:#f3f4f2;border-radius:9px}.tabs button{flex:1;background:transparent;color:#8b9490;box-shadow:none;padding:8px}.tabs button:hover:not(:disabled){background:transparent;transform:none}.tabs button.on{background:#fff;color:#3e4f48;box-shadow:0 1px 4px #283b3215}
-#m:not(:empty){position:fixed;inset:0;background:#1c2b2688;backdrop-filter:blur(4px);overflow:auto;padding:24px;z-index:50}.mb{max-width:660px;margin:auto}.mb .card{border-radius:14px;box-shadow:0 30px 80px #17251f44}
-.cal{display:grid;overflow-x:auto;border:1px solid var(--b);border-radius:11px;background:#fff;margin-bottom:16px}
-.ch,.cr,.cc{padding:8px;border-bottom:1px solid #efefec;border-right:1px solid #efefec;font-size:12px}
-.ch{font-weight:700;color:#a4aaa7;background:#fafaf8;text-align:center;grid-row:1}.cr{font-weight:700;grid-column:1;display:flex;align-items:center;background:#fafaf8;color:var(--forest)}.cc{min-height:54px}.td{background:#f1f6f3}
-.cb{margin:6px 3px;padding:4px 10px;background:#e9f0ec;border-left:3px solid var(--forest);border-radius:6px;font-weight:600;cursor:pointer;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;z-index:1;color:var(--forest)}.cb small{display:block;color:var(--mut);font-weight:400}.cb.o{background:#f0f1ef;border-color:#9aa59b;color:#6d7873}
-@media(max-width:900px){
-.sidebar{position:fixed;inset:0 auto 0 0;transform:translateX(-100%);box-shadow:20px 0 60px #1b2d2633}
-body.so .sidebar{transform:none}body.so .backdrop{display:block;position:fixed;inset:0;z-index:20;background:#1c292466}
-.menu-btn{display:grid}.hd{padding:0 16px}.prop{margin-right:auto}.wrap{padding:22px 16px}.g2,.auth{grid-template-columns:1fr}.ah{padding:32px}.gs{width:170px}}
-@media(max-width:640px){.gs,.prop small{display:none}.pb{font-size:0;gap:0;padding:0 11px}.welcome h1{font-size:23px}}
-@media print{.sidebar,.backdrop,.hd,.welcome,.nop,.top button,.bar2{display:none!important}body{background:#fff}.card{border:0}.wrap{padding:0}body.pm .wrap{display:none}#m:not(:empty){position:static;background:none;padding:0;backdrop-filter:none}}
+:root{--g:#18352f;--t:#ad6a45;--t2:#c78662;--iv:#f0eee7}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}body{background:var(--iv);color:var(--g);font:400 14px/1.7 Manrope,sans-serif;min-width:320px;overflow-x:hidden}::selection{background:var(--t);color:#fff}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}img{display:block}
+.serif,h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:500}.mono{font-family:"DM Mono",monospace}
+.eb{font-weight:600;font-size:10px;letter-spacing:.22em;text-transform:uppercase}
+header{position:fixed;inset:0 0 auto;z-index:40;height:96px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:var(--iv);border-bottom:1px solid #18352f33;transition:background .4s,color .4s}
+.lg{display:flex;align-items:center;gap:12px;line-height:1}.crest{width:42px;height:42px;border-radius:50%;border:1px solid currentColor;background:url(Images/smartboard.logo.png) 52% 27%/270% #2c4430}.lg b{display:block;font:500 20px "Playfair Display",serif;letter-spacing:.08em}.lg small{display:block;font-size:9px;letter-spacing:.42em;margin-top:5px}
+.hr{display:flex;align-items:center;gap:14px}.tl{opacity:.8}.tl:hover{opacity:1}
+.bt{display:flex;align-items:center;gap:12px;height:44px;padding:0 20px;border:1px solid #18352f59;transition:.3s}.bt:hover{background:var(--g);color:#fff}
+.mt{display:flex;align-items:center;gap:12px;height:44px;padding:0 4px}.bars{position:relative;width:28px;height:16px}.bars u{position:absolute;left:0;width:28px;height:1px;background:currentColor;transition:transform .3s}.bars u:first-child{top:4px}.bars u:last-child{bottom:4px}
+.mo .bars u:first-child{transform:translateY(4px) rotate(45deg)}.mo .bars u:last-child{transform:translateY(-4px) rotate(-45deg)}.mo header{background:transparent;color:var(--iv);border-color:#ffffff26}.mo .bt{border-color:#ffffff59}.mo .bt:hover{background:var(--iv);color:var(--g)}
+.hero{display:grid;grid-template-columns:42% 58%;min-height:100vh;padding-top:96px}
+.hl{display:flex;flex-direction:column;justify-content:space-between;padding:64px 48px 48px}.ey{display:flex;align-items:center;gap:12px;margin-bottom:32px}.ey:before{content:'';width:32px;height:1px;background:var(--t)}
+h1{font-size:clamp(4.5rem,10vw,9.5rem);line-height:.74;letter-spacing:-.065em;max-width:36rem}h1 em{display:inline-block;margin-left:12%;color:var(--t)}
+.hl p.d{max-width:280px;margin:40px 20px 0 auto;font-size:14px;line-height:1.7;color:#18352fb3}
+.hb{display:flex;align-items:flex-end;justify-content:space-between;margin-top:48px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;line-height:2;color:#18352fa6}
+.ar{width:56px;height:56px;border-radius:50%;border:1px solid #18352f59;display:grid;place-items:center;transition:.3s;color:var(--g)}.ar:hover{background:var(--g);color:#fff}
+.hi{position:relative;overflow:hidden;min-height:52vh;background:#2c4430}.hi img,.hi video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.hi:after{content:'';position:absolute;inset:0;background:linear-gradient(to top,#102b2559,transparent 55%,#0000001a)}
+.cap{position:absolute;z-index:2;left:40px;right:40px;bottom:40px;display:flex;align-items:flex-end;justify-content:space-between;color:#fff}.cap small{display:block;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#ffffffb3}.cap .serif{font-size:26px;line-height:1.3;margin-top:4px}.cap .r{text-align:right;max-width:190px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;line-height:2;color:#ffffffbf}
+.vt{position:absolute;z-index:2;right:0;top:50%;transform:translateY(-50%);background:var(--t);color:#fff;padding:20px 12px;font-size:9px;letter-spacing:.28em;text-transform:uppercase;writing-mode:vertical-rl}
+#mm{position:fixed;inset:0;z-index:30;background:var(--g);color:var(--iv);padding:96px 48px 0;clip-path:inset(0 0 100% 0);pointer-events:none;transition:clip-path .7s cubic-bezier(.76,0,.24,1);overflow:auto}.mo #mm{clip-path:inset(0);pointer-events:auto}
+.mg{display:grid;grid-template-columns:1fr 320px;min-height:calc(100vh - 96px);padding:40px 0}.mg nav{display:flex;flex-direction:column;justify-content:center}
+.mi{display:grid;grid-template-columns:60px 1fr auto;align-items:center;border-bottom:1px solid #ffffff26;padding:14px 0}.mi .mono{font-size:10px;color:var(--t2)}.mi .l{font:500 clamp(2.4rem,5.4vw,5rem)/1 "Playfair Display",serif;letter-spacing:-.04em;transition:transform .3s}.mi:hover .l{transform:translateX(12px)}.mi .x{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#ffffff73}
+.ma{display:flex;flex-direction:column;justify-content:flex-end;margin-left:56px;padding-left:40px;border-left:1px solid #ffffff26}.ma .serif{font-size:24px;font-style:italic;color:var(--t2)}.ma p{margin-top:14px;max-width:320px;font-size:14px;color:#ffffff8c}.ma div{margin-top:30px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;line-height:2.2;color:#ffffffb3}
+.sec{padding:110px 48px}.sh{display:flex;align-items:baseline;gap:18px;margin-bottom:44px;padding-bottom:18px;border-bottom:1px solid #18352f33}.sh .mono{font-size:11px;color:var(--t)}.sh h2{font-size:clamp(3rem,7vw,6rem);line-height:1;letter-spacing:-.04em}.sh p{margin-left:auto;max-width:300px;font-size:13px;color:#18352fb3}
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:28px}.rc .im{overflow:hidden;background:#ddd8c9}.rc img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .7s}.rc:hover img{transform:scale(1.05)}.rc h3{font-size:28px;margin:16px 0 4px}.rc p{font-size:13px;color:#18352fb3}.rc .pr{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid #18352f33}.rc .mono{font-size:12px}.rc .eb{color:var(--t)}
+.dk{background:var(--g);color:var(--iv)}.dk .sh{border-color:#ffffff26}.dk .sh p{color:#f0eee7a6}.dk .sh .mono{color:var(--t2)}
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}.pc{position:relative;aspect-ratio:3/4;overflow:hidden;background:#2c4430}.pc img{width:100%;height:100%;object-fit:cover;transition:transform .7s}.pc:hover img{transform:scale(1.06)}.pc:after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 50%,#102b25d9)}.pc span{position:absolute;left:18px;bottom:16px;z-index:2;font:500 26px "Playfair Display",serif;color:#fff}
+.pt{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}.pt h2{font-size:clamp(2.8rem,6vw,5.2rem);line-height:.95;letter-spacing:-.04em}.pt h2 em{color:var(--t)}.pt p{margin:22px 0 30px;max-width:420px;color:#18352fb3}
+.b1,.b2{display:inline-flex;align-items:center;justify-content:space-between;gap:28px;padding:16px 24px;margin:0 10px 10px 0;transition:.3s}.b1{background:var(--t);color:#fff}.b1:hover{background:var(--g)}.b2{border:1px solid #18352f59}.b2:hover{background:var(--g);color:#fff}
+.ml div{display:grid;grid-template-columns:50px 1fr;gap:6px;padding:16px 0;border-bottom:1px solid #18352f33}.ml .mono{font-size:10px;color:var(--t)}.ml b{font:500 28px "Playfair Display",serif;letter-spacing:-.02em}.ml span{grid-column:2;font-size:13px;color:#18352fb3;margin-top:-4px}
+footer{background:#102b25;color:#f0eee7b3;padding:70px 48px 28px}footer .c{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}footer h3{color:var(--iv);font-size:24px;margin-bottom:10px}footer a{display:block;margin:4px 0;font-size:13px}footer a:hover{color:#fff}footer img{width:150px;margin-bottom:12px;mix-blend-mode:lighten}.cp{margin-top:46px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;text-align:center;color:#f0eee773}
+#bp{position:fixed;right:0;bottom:0;z-index:50;width:430px;max-width:100%;background:var(--iv);padding:32px;box-shadow:0 -20px 80px #102b2533;transform:translateY(100%);transition:transform .5s}#bp.on{transform:none}
+#bp .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}#bp .hd small{display:block;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--t)}#bp h2{font-size:30px;margin-top:6px}#bp .x{font-size:28px;font-weight:300}
+.fl{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#18352f33}label{display:block;background:var(--iv);padding:14px 16px}label span{display:block;font-size:9px;letter-spacing:.2em;text-transform:uppercase}
+input,select,textarea{font:inherit;font-size:13px;width:100%;margin-top:6px;border:0;background:transparent;color:var(--g);outline:none}.gl{margin-top:1px;border:1px solid #18352f33}
+.go{display:flex;width:100%;justify-content:space-between;align-items:center;margin-top:16px;padding:16px 20px;background:var(--t);color:#fff;transition:.3s}.go:hover{background:var(--g)}
+#fb{position:fixed;bottom:20px;right:20px;z-index:20;display:none;height:48px;align-items:center;padding:0 20px;background:var(--t);color:#fff;box-shadow:0 8px 24px #0003}
+dialog{border:0;padding:0;width:min(720px,94vw);max-height:90vh;background:var(--iv);color:var(--g)}dialog::backdrop{background:#0a1c17b3}.dg{padding:30px;overflow:auto;max-height:90vh}.dg h2{font-size:34px;margin-bottom:6px}.dg .x{float:right;font-size:30px}.rw{display:flex;gap:16px;align-items:center;border-bottom:1px solid #18352f33;padding:14px 0}.rw img{width:110px;height:80px;object-fit:cover;flex:none}.rw div{flex:1}.dg form{display:grid;gap:1px;background:#18352f33;margin-top:14px}.dg form input,.dg form textarea{padding:14px 16px;margin:0;background:var(--iv)}.dg .go{margin-top:12px;border:0}
+@media(max-width:1024px){.hero{grid-template-columns:1fr}.hl{min-height:600px;padding:48px 24px 32px}.hi{min-height:60vh}.vt{display:none}.mg{grid-template-columns:1fr}.ma{margin:30px 0 0;padding:0;border:0}.pt{grid-template-columns:1fr;gap:36px}footer .c{grid-template-columns:1fr}}
+@media(max-width:640px){header{padding:0 20px}.bt,.tl{display:none}#fb{display:flex}.sec{padding:80px 24px}#mm{padding:96px 24px 0}.cap{left:20px;right:20px}.cap .r{display:none}.sh{flex-wrap:wrap}.sh p{margin:0}footer{padding:60px 24px 24px}}
 
 /* ===== SmartBoard intro splash (logo pop) ===== */
 #sb-splash{position:fixed;inset:0;z-index:99999;background:#2c4430;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;transition:opacity .9s ease}
@@ -91,12 +57,36 @@ body.so .sidebar{transform:none}body.so .backdrop{display:block;position:fixed;i
 @keyframes sbPop{from{opacity:0;transform:scale(.6);filter:blur(12px)}to{opacity:1;transform:scale(1);filter:blur(0)}}
 #sb-line{width:0;height:1px;background:linear-gradient(90deg,transparent,rgba(217,182,106,.7),transparent);margin-top:28px;transition:width 1s .4s ease}
 #sb-line.show{width:clamp(120px,25vw,280px)}
-#sb-tag{font:400 clamp(12px,2vw,16px)/1.4 "DM Sans",Manrope,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:rgba(240,238,231,.6);margin-top:22px;opacity:0;transform:translateY(10px);transition:opacity .6s .5s ease,transform .6s .5s ease}
+#sb-tag{font:400 clamp(12px,2vw,16px)/1.4 Lato,Manrope,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:rgba(240,238,231,.6);margin-top:22px;opacity:0;transform:translateY(10px);transition:opacity .6s .5s ease,transform .6s .5s ease}
 #sb-tag.show{opacity:1;transform:none}
-.sb-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);font:400 11px/1 "DM Sans",Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,238,231,.35);opacity:0;transition:opacity .6s 1s ease;animation:sbBob 1.8s ease-in-out infinite}
+.sb-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);font:400 11px/1 Lato,Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,238,231,.35);opacity:0;transition:opacity .6s 1s ease;animation:sbBob 1.8s ease-in-out infinite}
 #sb-p2.show .sb-hint{opacity:1}
 @keyframes sbBob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
-</style><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet"><link rel="icon" href="Images/smartboard.logo.png"></head><body>
+
+/* ===== Music player (same widget as Apple Gadget, SmartBoard colours) ===== */
+.music-player{position:fixed;bottom:28px;right:28px;z-index:45;display:flex;align-items:center;gap:12px;background:rgba(16,43,37,.92);border:1px solid rgba(255,255,255,.08);border-left:3px solid #ad6a45;border-radius:14px;padding:9px 16px 9px 10px;backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.35);max-width:300px;color:#f0eee7}
+.music-player__btn{flex-shrink:0;width:34px;height:34px;padding:0;border-radius:50%;background:#ad6a45;color:#fff;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .15s}
+.music-player__btn:hover{background:#c78662;transform:scale(1.06)}
+.music-player__btn svg{width:15px;height:15px}
+.music-player__info{min-width:0}
+.music-player__label{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c78662;margin-bottom:2px;line-height:1.3}
+.music-player__label:before{content:'';width:5px;height:5px;border-radius:50%;background:#c78662;flex-shrink:0;box-shadow:0 0 6px #c78662}
+.music-player__title{font:700 14px/1.3 Manrope,sans-serif;color:#fff;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.music-player__sub{font-size:11px;line-height:1.4;color:rgba(240,238,231,.5);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.music-player__eq{flex-shrink:0;display:flex;align-items:flex-end;gap:2px;height:16px}
+.music-player__eq span{width:2.5px;border-radius:2px;background:#ad6a45;height:4px;transition:opacity .2s}
+.music-player__eq.playing span{animation:mpEq 1s ease-in-out infinite}
+.music-player__eq:not(.playing) span{opacity:.35}
+.music-player__eq span:nth-child(1){animation-delay:-.9s}.music-player__eq span:nth-child(2){animation-delay:-.6s}.music-player__eq span:nth-child(3){animation-delay:-.3s}.music-player__eq span:nth-child(4){animation-delay:0s}
+@keyframes mpEq{0%,100%{height:4px}50%{height:15px}}
+.music-player__toggle{flex-shrink:0;cursor:pointer;display:block;background:none;padding:0}
+.music-player__toggle input{display:none}
+.music-player__toggle-track{display:block;width:34px;height:18px;border-radius:999px;background:rgba(255,255,255,.15);position:relative;transition:background .2s}
+.music-player__toggle input:checked+.music-player__toggle-track{background:#ad6a45}
+.music-player__toggle-thumb{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff;transition:transform .2s}
+.music-player__toggle input:checked+.music-player__toggle-track .music-player__toggle-thumb{transform:translateX(16px)}
+@media(max-width:640px){.music-player{right:auto;left:16px;bottom:max(16px,env(safe-area-inset-bottom));max-width:calc(100vw - 120px)}.music-player__sub{display:none}}
+</style><link rel="icon" href="Images/smartboard.logo.png"></head><body>
 <div id="sb-splash" aria-hidden="true"><div id="sb-p1"><img src="Images/smartboard.logo.png" alt="SmartBoard"></div><div id="sb-p2"><img id="sb-logo-pop" src="Images/smartboard.logo.png" alt="SmartBoard"><div id="sb-line"></div><div id="sb-tag">Boarding house, made simple</div><div class="sb-hint">Click or scroll to continue</div></div></div>
 <script>
 (function(){var s=document.getElementById('sb-splash');if(!s)return;
@@ -112,144 +102,83 @@ setTimeout(function(){ready=true;['wheel','touchmove','keydown'].forEach(functio
 setTimeout(end,3600)},1800);
 })();
 </script>
-<div id="app"></div><div id="m"></div>
+
+<header><a class="lg" href="#home"><span class="crest"></span><span><b>SMART</b><small>BOARD · RESIDENCE</small></span></a>
+<div class="hr"><a class="eb tl" id="li" href="portal.html">Log in</a><button class="bt eb" onclick="bkp(1)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M6.5 3v3M17.5 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.4"/></svg>Book your stay</button>
+<button class="eb mt" id="mt" aria-expanded="false" aria-controls="mm" onclick="tm()"><span id="ml">Menu</span><i class="bars"><u></u><u></u></i></button></div></header>
+<section class="hero" id="home"><div class="hl"><div><p class="eb ey">Boarding house, made simple</p><h1>Find your<br><em>place</em></h1><p class="d">A welcoming house of comfortable rooms, shared dining and the kind of care that makes a city feel like home. Rent, utilities and billing, all in one place.</p></div>
+<div class="hb"><div>123 Sample Street<br>Your City, Philippines</div><a class="ar" href="#stay" aria-label="Discover"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a></div></div>
+<div class="hi"><video id="hero-video" src="Videos/front.mp4" poster="Images/Lobby-Lounge.webp" autoplay muted loop playsinline preload="auto" aria-label="SmartBoard Residence lobby lounge"></video><div class="cap"><div><small>Local time</small><p class="serif" id="ck">--:--</p></div><div class="r">SmartBoard Residence<br>Open 24 hours</div></div><span class="vt">Boarding house management system</span></div></section>
+<div id="mm"><div class="mg"><nav id="mn"></nav><aside class="ma"><p class="serif">Make yourself at home.</p><p>Our team is here around the clock for reservations, questions and anything in between.</p><div><a href="tel:0000000000">(000) 000-0000</a><br><a href="mailto:hello@smartboard.example">hello@smartboard.example</a></div></aside></div></div>
+<section class="sec" id="stay"><div class="sh"><span class="mono">01</span><h2>Stay</h2><p>Rooms and suites for a night, a month or longer.</p></div><div class="rg" id="rg"></div></section>
+<section class="sec dk" id="taste"><div class="sh"><span class="mono">02</span><h2>Taste</h2><p>Dining rooms, lounges and bars, all under one roof.</p></div><div class="pg" id="dg"></div></section>
+<section class="sec" id="unwind"><div class="sh"><span class="mono">03</span><h2>Unwind</h2><p>Swim, train or simply rest at our pool, club and spa.</p></div><div class="pg" id="fg"></div></section>
+<section class="sec dk" id="portal" style="background:var(--iv);color:var(--g);border-top:1px solid #18352f33"><div class="pt"><div><p class="eb" style="color:var(--t);margin-bottom:18px">Residents &amp; staff</p><h2>Everything, in <em>one place</em></h2><p>Log in to manage tenants, meter readings, billing and payments, or create an account to get started.</p><a class="b1 eb" id="p1" href="portal.html">Log in</a><a class="b2 eb" id="p2" href="portal.html#register">Sign up</a></div>
+<div class="ml" id="ml2"></div></div></section>
+<footer><div class="c"><div><img src="Images/smartboard.logo.png" alt="SmartBoard"><h3>SmartBoard Residence</h3><p>123 Sample Street, Your City, Philippines<br>(000) 000-0000 · hello@smartboard.example</p></div><div><h3>Explore</h3><a href="#stay">Stay</a><a href="#taste">Taste</a><a href="#unwind">Unwind</a></div><div><h3>Portal</h3><a href="portal.html">Log in</a><a href="portal.html#register">Sign up</a></div></div><p class="cp">All rights reserved 2026 SmartBoard Residence</p></footer>
+<div id="bp" aria-hidden="true"><div class="hd"><div><small>Reservations</small><h2>Plan your stay</h2></div><button class="x" onclick="bkp(0)" aria-label="Close">×</button></div>
+<form onsubmit="return find(event)"><div class="fl"><label><span>Arrival</span><input type="date" id="ar" required></label><label><span>Departure</span><input type="date" id="dp" required></label></div><label class="gl"><span>Guests</span><select id="gs"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></label>
+<button class="go eb">Check availability <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></button></form></div>
+<button id="fb" class="eb" onclick="bkp(1)">Book</button><dialog id="M"></dialog>
 <script>
-const $=s=>document.querySelector(s),E=s=>String(s??'').replace(/[&<>"]/g,c=>'&#'+c.charCodeAt(0)+';'),
-P=n=>'₱'+(+n||0).toLocaleString('en-PH',{minimumFractionDigits:2,maximumFractionDigits:2}),pad=n=>String(n).padStart(2,'0'),
-mo=d=>d.getFullYear()+'-'+pad(d.getMonth()+1),today=()=>{let d=new Date();return mo(d)+'-'+pad(d.getDate())},
-addm=(m,n)=>{let[y,x]=m.split('-').map(Number);return mo(new Date(y,x-1+n,1))},ML=m=>new Date(m+'-15').toLocaleString('en',{month:'long',year:'numeric'}),
-hash=s=>{let h=5381;for(const c of s)h=(h*33^c.charCodeAt(0))>>>0;return h.toString(36)},K='smartboard_v1',CUR=mo(new Date());
-let S=JSON.parse(localStorage.getItem(K)||'null'),U=null,page='dash',MO=CUR,RF=addm(CUR,-2),RT=CUR,tab='in',LT=null;
-const save=()=>localStorage.setItem(K,JSON.stringify(S)),nid=()=>S.seq++,rnd=x=>Math.round(x*100)/100,
-opt=(a,s)=>a.map(([v,l])=>`<option value="${v}"${v==s?' selected':''}>${E(l)}</option>`).join(''),tag=s=>`<span class="tag ${s}">${s}</span>`,
-room=i=>S.rooms.find(r=>r.id==i),ten=i=>S.tenants.find(t=>t.id==i),act=m=>S.tenants.filter(t=>active(t,m)),
-active=(t,m)=>t.in.slice(0,7)<=m&&(!t.out||t.out.slice(0,7)>=m),reading=(r,m)=>S.readings.find(x=>x.room==r&&x.m==m),
-rate=(t,m)=>{let r=S.rates.filter(x=>x.t==t&&x.e<=m).sort((a,b)=>b.e.localeCompare(a.e))[0];return r?r.v:0},
-sm=(L,t)=>L.filter(x=>x.t==t).reduce((s,x)=>s+x.a,0),sum2=(a,k)=>rnd(a.reduce((s,x)=>s+x[1][k],0)),
-bal=(tid,k)=>{let L=S.ledger.filter(x=>x.tid==tid);return rnd(k=='adv'?sm(L,'advance')-sm(L,'apply'):sm(L,'deposit')-sm(L,'refund'))};
-function bill(t,m){let r=room(t.room),rd=reading(t.room,m),el=rd?rd.ce-rd.pe:0,wa=rd?rd.cw-rd.pw:0,er=rate('elec',m),wr=rate('water',m),
-items=[['Wi-Fi',rate('wifi',m)],['Garbage collection',rate('garbage',m)]].filter(x=>x[1]>0).concat(S.misc.filter(x=>x.room==t.room&&x.m==m).map(x=>[x.desc,x.a])),
-misc=rnd(items.reduce((s,x)=>s+x[1],0)),e=rnd(el*er),w=rnd(wa*wr),total=rnd(r.rent+e+w+misc),L=S.ledger.filter(x=>x.tid==t.id&&x.m==m),credit=sm(L,'apply'),paid=sm(L,'rent');
-return{r,rd,el,wa,e,w,er,wr,items,misc,total,credit,paid,rent:r.rent,due:Math.max(0,rnd(total-credit-paid))}}
-function status(t,m){let b=bill(t,m);return b.due<=0?'Paid':(m<CUR||(m==CUR&&new Date().getDate()>10))?'Overdue':'Unpaid'}
-function seed(){const c=CUR;S={seq:100,users:[{u:'owner',p:hash('owner123'),n:'Owner Admin',r:'owner'},{u:'staff',p:hash('staff123'),n:'Caretaker',r:'staff'},{u:'tenant',p:hash('tenant123'),n:'Juan Dela Cruz',r:'tenant',tid:1}],rooms:[],tenants:[],ledger:[],readings:[],misc:[],rates:[]};
-[[101,1,2500],[102,1,2500],[103,1,2800],[201,2,3000],[202,2,3200]].forEach(([no,f,rent],i)=>S.rooms.push({id:i+1,no,f,rent}));
-S.rates=[['elec',12.5,-3],['water',30,-3],['wifi',100,-3],['garbage',50,-3],['elec',13.2,-1]].map(([t,v,k])=>({t,v,e:addm(c,k)}));
-['Juan Dela Cruz','Maria Santos','Pedro Reyes','Ana Lim'].forEach((n,i)=>{let t={id:i+1,n,ph:'0917-555-010'+i,em:'Family 0918-555-02'+i,room:i+1,in:addm(c,-4)+'-05',out:''};S.tenants.push(t);
-S.ledger.push({id:nid(),tid:t.id,m:addm(c,-4),a:S.rooms[i].rent,d:t.in,t:'deposit',note:'Security deposit'},{id:nid(),tid:t.id,m:addm(c,-4),a:S.rooms[i].rent,d:t.in,t:'advance',note:'Advance payment'});
-let e=1000+i*200,w=50+i*10;for(let k=3;k>=1;k--){let ce=e+80+(i*7+k*13)%50,cw=w+6+(i*3+k*5)%6;S.readings.push({room:t.room,m:addm(c,-k),pe:e,ce,pw:w,cw});e=ce;w=cw}});
-S.tenants.forEach(t=>{for(let k=3;k>=1;k--){let m=addm(c,-k);if(t.id==3&&k==1)continue;S.ledger.push({id:nid(),tid:t.id,m,a:bill(t,m).due,d:m+'-0'+(3+t.id),t:'rent',note:'Rent & utilities'})}});save()}
-let CS=today();const sd=(x,n)=>{let d=new Date(x+'T00:00');d.setDate(d.getDate()+n);return mo(d)+'-'+pad(d.getDate())};
-const NAV={owner:[['dash','Dashboard','▦'],['calendar','Calendar','▥'],['tenants','Tenants','☺'],['rooms','Rooms','⌂'],['readings','Meter readings','ϟ'],['payments','Payments','₱'],['billing','Billing','▤'],['finance','Finance','¤'],['ledger','Ledger','☰'],['reports','Reports','◔'],['settings','Rates','⚙'],['users','Users','♟']],
-staff:[['dash','Dashboard','▦'],['calendar','Calendar','▥'],['tenants','Tenants','☺'],['readings','Meter readings','ϟ'],['payments','Payments','₱']],tenant:[['mine','My bill','▤']]};
-const IC={grid:'<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>',calendar:'<path d="M7 3v3M17 3v3M4 9h16"/><rect x="4" y="5" width="16" height="16" rx="3"/>',bed:'<path d="M3 19v-8M21 19v-6a3 3 0 0 0-3-3H9a3 3 0 0 0-3 3v6M3 16h18M6 10V7h5a3 3 0 0 1 3 3"/>',users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/>',bolt:'<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/>',wallet:'<path d="M3 7a2 2 0 0 1 2-2h13v4"/><path d="M3 7v11a2 2 0 0 0 2 2h15V9H5a2 2 0 0 1-2-2Z"/><path d="M16 14h.01"/>',file:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>',list:'<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',settings:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/>',search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>',plus:'<path d="M12 5v14M5 12h14"/>',arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',home:'<path d="m3 11 9-8 9 8M5 10v10h14V10"/>',logout:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>',alert:'<path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/>'},
-IK={dash:'grid',calendar:'calendar',tenants:'users',rooms:'bed',readings:'bolt',payments:'wallet',billing:'file',finance:'chart',ledger:'list',reports:'chart',settings:'settings',users:'user',mine:'file'},
-ic=(n,s=18)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[n]||''}</svg>`;
-const mp=()=>`<label>Month<input type="month" value="${MO}" onchange="MO=this.value||CUR;R()"></label>`;
-const LOGO='<img class="lgi" src="Images/smartboard.logo.png" alt="SmartBoard" onerror="this.outerHTML=\'<b class=lgt>Smart<i>Board</i></b>\'">';
-function authView(){$('#app').innerHTML=`<div class="auth"><div class="ah"><div class="logo" style="padding:0">${LOGO}</div><h1>Run your boarding house without the paperwork</h1><p>Track tenants, bill electricity and water automatically, and see every payment in one place.</p><div><span class="pl">Tenant tracking</span><span class="pl">Utility auto-billing</span><span class="pl">Financial ledger</span></div></div>
-<div class="af"><div class="card"><h2>${tab=='in'?'Welcome back':'Create your account'}</h2><p class="mut">${tab=='in'?'Log in to manage your boarding house.':'Register as a tenant, staff member, or owner.'}</p><p class="mut"><a href="home.html" style="color:var(--forest)">← Back to main menu</a></p>
-<div class="tabs"><button class="${tab=='in'?'on':''}" onclick="tab='in';R()">Log in</button><button class="${tab=='up'?'on':''}" onclick="tab='up';R()">Register</button></div>
-${tab=='in'?`<form class="col" onsubmit="return H('login',event)"><label>Username<input name="u" required autofocus></label><label>Password<input name="p" type="password" required></label><button>Log in</button></form>
-<p class="mut">Demo accounts: owner / owner123, staff / staff123, tenant / tenant123</p>`:
-`<form class="col" onsubmit="return H('reg',event)"><label>Full name<input name="n" required></label><label>Username<input name="u" required></label><label>Password (6+ characters)<input name="p" type="password" minlength="6" required></label><label>Confirm password<input name="p2" type="password" required></label>
-<label>I am a<select name="r" onchange="$('#x1').hidden=this.value!='tenant';$('#x2').hidden=this.value=='tenant'"><option value="tenant">Tenant</option><option value="staff">Staff / caretaker</option><option value="owner">Owner / admin</option></select></label>
-<label id="x1">Your room number<input name="room"></label><label id="x2" hidden>Staff / owner access code<input name="code"></label><button>Create account</button></form><p class="mut">Demo access code for staff and owner: SMART2026</p>`}</div></div></div>`}
-function R(){if(!U)return authView();document.body.classList.remove('so');let nv=NAV[U.r];if(!nv.some(x=>x[0]==page))page=nv[0][0];let own=U.r=='owner',od=own?act(CUR).filter(t=>status(t,CUR)=='Overdue').length:0,cur=nv.find(x=>x[0]==page),fn=(U.n||'').split(' ')[0],hr=new Date().getHours(),gr=hr<12?'Good morning':hr<18?'Good afternoon':'Good evening',dl=new Date().toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'}).toUpperCase();
-$('#app').innerHTML=`<div class="app"><aside class="sidebar"><div class="brand"><span class="bm"></span><div><strong>SmartBoard</strong><small>BOARDING HOUSE</small></div></div>
-<nav><p class="nav-label">WORKSPACE</p>${nv.map(([k,l])=>`<a class="${k==page?'on':''}" onclick="page='${k}';R()">${ic(IK[k])}<span>${l}</span></a>`).join('')}</nav>
-<div class="sb-bottom"><a href="home.html">${ic('home')}<span>Main menu</span></a><a onclick="logout()">${ic('logout')}<span>Log out</span></a>
-<div class="help-card"><div class="hi">?</div><strong>Need some help?</strong><p>Our support team is here for you.</p><a href="mailto:hello@smartboard.example">Get support ${ic('arrow',14)}</a></div>
-<div class="profile"><div class="av">${E(U.n[0]||'?').toUpperCase()}</div><div><b>${E(U.n)}</b><small>${U.r}</small></div></div></div></aside><div class="backdrop" onclick="document.body.classList.remove('so')"></div>
-<main class="main"><header class="hd nop"><button class="menu-btn" onclick="document.body.classList.add('so')" aria-label="Open menu">${ic('menu')}</button><div class="prop"><span class="bm sm"></span><div><small>PROPERTY</small><strong>SmartBoard Residence</strong></div></div>
-<div class="ha"><div class="gs">${ic('search',17)}<input class="srch" placeholder="Search this page..." oninput="flt(this.value)"></div>${own?`<button class="bell" title="Overdue accounts" aria-label="Overdue accounts" onclick="page='billing';MO=CUR;R()">${ic('bell')}${od?`<b>${od}</b>`:''}</button><button class="pb" onclick="page='tenants';R()">${ic('plus',17)} Check in tenant</button>`:''}</div></header>
-<div class="wrap"><section class="welcome"><p class="eyebrow">${dl}</p><h1>${page=='dash'?`${gr}, ${E(fn)}.`:cur[1]}</h1><p>${page=='dash'?'Here’s what’s happening at SmartBoard today.':'SmartBoard Residence'}</p></section>${V[page]()}</div></main></div>`}
-function flt(q){q=q.toLowerCase();document.querySelectorAll('.wrap tr').forEach(r=>{if(!r.querySelector('th'))r.hidden=!!q&&!r.textContent.toLowerCase().includes(q)})}
-const V={
-dash(){let a=act(MO),bs=a.map(t=>[t,bill(t,MO)]),occ=S.tenants.filter(t=>!t.out),vac=S.rooms.length-occ.length,
-col=m=>rnd(S.ledger.filter(x=>['rent','advance','deposit'].includes(x.t)&&x.d.slice(0,7)==m).reduce((s,x)=>s+x.a,0)),
-ms=[5,4,3,2,1,0].map(k=>addm(MO,-k)),vs=ms.map(col),mx=Math.max(1,...vs),X=i=>30+i*100,Y=v=>160-v/mx*130,st={Paid:0,Unpaid:0,Overdue:0};a.forEach(t=>st[status(t,MO)]++);
-let path=vs.map((v,i)=>i?`C${(X(i-1)+X(i))/2},${Y(vs[i-1])} ${(X(i-1)+X(i))/2},${Y(v)} ${X(i)},${Y(v)}`:`M${X(0)},${Y(v)}`).join(' '),
-svg=`<svg viewBox="0 0 560 190" style="width:100%"><defs><linearGradient id="gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#557b70" stop-opacity=".55"/><stop offset="1" stop-color="#557b70" stop-opacity="0"/></linearGradient></defs><path d="${path} L${X(5)},160 L${X(0)},160Z" fill="url(#gr)"/><path d="${path}" fill="none" stroke="#315f53" stroke-width="2.5"/>${vs.map((v,i)=>`<circle cx="${X(i)}" cy="${Y(v)}" r="4.5" fill="#fff" stroke="#315f53" stroke-width="2"><title>${ML(ms[i])}: ${P(v)}</title></circle><text x="${X(i)}" y="182" font-size="11" text-anchor="middle" fill="#6a766f">${ML(ms[i]).slice(0,3)}</text>`).join('')}</svg>`,
-n=a.length||1,p1=st.Paid/n*100,p2=p1+st.Unpaid/n*100,od=a.filter(t=>status(t,MO)=='Overdue'),nr=a.filter(t=>!reading(t.room,MO)),
-bx=(l,v,c)=>`<div class="stat" style="background:${c};border:0"><small>${l}</small><b>${v}</b></div>`;
-return `<div class="top">${mp()}</div><div class="grid">${[['Occupied rooms',occ.length+' of '+S.rooms.length],['Billed this month',P(sum2(bs,'total'))],['Payments received',P(col(MO))],['Outstanding',P(sum2(bs,'due'))]].map(([x,y],i)=>`<div class="stat"><span class="mi ${['coral','purple','green','gold'][i]}">${ic(['bed','file','wallet','alert'][i])}</span><small>${x}</small><b>${y}</b></div>`).join('')}</div>
-<div class="g2"><div class="card"><h3>Revenue, last 6 months</h3>${svg}</div><div class="card"><h3>Room availability</h3><div class="seg"><div style="width:${occ.length/Math.max(1,S.rooms.length)*100}%;background:var(--lime2)"></div><div style="flex:1;background:var(--mint)"></div></div><div class="grid" style="margin:0">${bx('Occupied',occ.length,'var(--lime)')}${bx('Vacant',vac,'var(--mint)')}</div></div></div>
-<div class="g2"><div class="card"><h3>Rooms</h3><div class="tw"><table><tr><th>Room<th>Tenant<th>Rent<th>Bill<th>Status</tr>${S.rooms.map(r=>{let t=occ.find(x=>x.room==r.id);return `<tr><td>${E(r.no)}<td>${t?E(t.n):'-'}<td>${P(r.rent)}<td>${t?P(bill(t,MO).total):'-'}<td>${tag(t?status(t,MO):'Vacant')}`}).join('')}</table></div></div>
-<div class="card"><h3>Bill status</h3><div class="dn" style="background:conic-gradient(var(--lime2) 0 ${p1}%,#dba179 ${p1}% ${p2}%,#cf6a55 ${p2}% 100%)"><div>${a.length}<small class="mut">bills</small></div></div>
-${[['Paid','var(--lime2)'],['Unpaid','#dba179'],['Overdue','#cf6a55']].map(([k,c])=>`<div class="lk"><i style="background:${c}"></i>${k}<b>${st[k]}</b></div>`).join('')}
-<h3 style="margin-top:14px">Needs attention</h3>${od.map(t=>`<div class="lk">Room ${room(t.room).no}, ${E(t.n)}<b>${P(bill(t,MO).due)}</b></div>`).join('')}${nr.map(t=>`<div class="lk"><span class="mut">Room ${room(t.room).no}: no meter reading yet</span></div>`).join('')}${od.length+nr.length?'':'<p class="mut">All caught up.</p>'}</div></div>`},
-tenants(){let own=U.r=='owner',vac=S.rooms.filter(r=>!S.tenants.some(t=>t.room==r.id&&!t.out));
-return (own?`<div class="card"><h3>Check in a tenant</h3><form class="f" onsubmit="return H('checkin',event)"><label>Name<input name="n" required></label><label>Phone<input name="ph"></label><label>Emergency contact<input name="em"></label><label>Room<select name="room" required>${opt(vac.map(r=>[r.id,r.no+' - '+P(r.rent)]))}</select></label><label>Move-in date<input type="date" name="in" value="${today()}" required></label><label>Advance ₱<input type="number" class="n" name="adv" min="0" step=".01" value="0"></label><label>Deposit ₱<input type="number" class="n" name="dep" min="0" step=".01" value="0"></label><button ${vac.length?'':'disabled'}>Check in</button></form></div>`:'')+
-`<div class="card"><h3>Tenants and occupancy history</h3><div class="tw"><table><tr><th>Tenant<th>Phone<th>Emergency contact<th>Room<th>Check-in<th>Check-out<th>Advance<th>Deposit<th></tr>${S.tenants.slice().reverse().map(t=>`<tr><td>${E(t.n)}<td>${E(t.ph)}<td>${E(t.em)}<td>${room(t.room).no}<td>${t.in}<td>${t.out||tag('Occupied')}<td>${P(bal(t.id,'adv'))}<td>${P(bal(t.id,'dep'))}<td><button class="sm s" onclick="editT(${t.id})">Edit</button> ${own&&!t.out?`<button class="sm d" onclick="checkout(${t.id})">Check out</button>`:''}`).join('')}</table></div></div>`},
-rooms(){return `<div class="card"><form class="f" onsubmit="return H('room',event)"><label>Room no.<input name="no" required></label><label>Floor<input type="number" name="f" value="1" class="n"></label><label>Monthly rent ₱<input type="number" name="rent" min="0" required></label><button>Add room</button></form></div>
-<div class="card"><div class="tw"><table><tr><th>Room<th>Floor<th>Rent<th>Status<th>Tenant<th></tr>${S.rooms.map(r=>{let t=S.tenants.find(x=>x.room==r.id&&!x.out);return `<tr><td>${E(r.no)}<td>${r.f}<td>${P(r.rent)}<td>${tag(t?'Occupied':'Vacant')}<td>${t?E(t.n):'-'}<td><button class="sm s" onclick="editRent(${r.id})">Edit rent</button>`}).join('')}</table></div></div>`},
-readings(){let a=act(MO),pm=addm(MO,-1),mi=S.misc.filter(x=>x.m==MO);
-return `<div class="top">${mp()}<span class="mut">Electricity ${P(rate('elec',MO))}/kWh, water ${P(rate('water',MO))}/m³</span></div><div class="card"><div class="tw"><table><tr><th>Room<th>Tenant<th>Prev kWh<th>Curr kWh<th>Prev m³<th>Curr m³<th>kWh<th>m³<th>Electric<th>Water<th></tr>${a.map(t=>{let rd=reading(t.room,MO),pv=reading(t.room,pm),b=bill(t,MO),f='rf'+t.room,x=(n,v)=>`<td><input form="${f}" class="n" type="number" step="any" min="0" name="${n}" value="${v??''}" required>`;
-return `<tr><td>${room(t.room).no}<form id="${f}" onsubmit="return H('reading',event)"><input type="hidden" name="room" value="${t.room}"><input type="hidden" name="m" value="${MO}"></form><td>${E(t.n)}${x('pe',rd?rd.pe:pv?.ce)}${x('ce',rd?.ce)}${x('pw',rd?rd.pw:pv?.cw)}${x('cw',rd?.cw)}<td>${b.el}<td>${b.wa}<td>${P(b.e)}<td>${P(b.w)}<td><button form="${f}" class="sm">Save</button>`}).join('')}</table></div></div>
-<div class="card"><h3>Other charges for ${ML(MO)}</h3><p class="mut">Wi-Fi and garbage fees come from Rates. Add one-off charges such as parking or damages here.</p><form class="f" onsubmit="return H('misc',event)"><input type="hidden" name="m" value="${MO}"><label>Room<select name="room">${opt(a.map(t=>[t.room,room(t.room).no+' - '+t.n]))}</select></label><label>Description<input name="desc" required></label><label>Amount ₱<input type="number" name="a" min="0.01" step=".01" required></label><button>Add charge</button></form>
-<div class="tw"><table>${mi.map(x=>`<tr><td>Room ${room(x.room).no}<td>${E(x.desc)}<td>${P(x.a)}<td><button class="sm d" onclick="delMisc(${x.id})">Remove</button>`).join('')}</table></div></div>`},
-payments(){let a=S.tenants.filter(t=>!t.out),L=S.ledger.filter(x=>x.t=='rent'||x.t=='advance'||x.t=='deposit').slice().sort((x,y)=>y.d.localeCompare(x.d)||y.id-x.id).slice(0,40);
-return `<div class="card"><h3>Record a payment</h3><form class="f" onsubmit="return H('pay',event)"><label>Tenant<select name="tid">${opt(a.map(t=>[t.id,room(t.room).no+' - '+t.n]))}</select></label><label>Type<select name="t"><option value="rent">Rent and utilities</option><option value="advance">Advance</option><option value="deposit">Deposit</option></select></label><label>For month<input type="month" name="m" value="${MO}" required></label><label>Amount ₱<input type="number" name="a" min="0.01" step=".01" required></label><label>Date paid<input type="date" name="d" value="${today()}" required></label><button>Save payment</button></form></div>
-<div class="card"><h3>Recent payments</h3><div class="tw"><table><tr><th>Date<th>Room<th>Tenant<th>Type<th>Month<th>Amount</tr>${L.map(x=>{let t=ten(x.tid);return `<tr><td>${x.d}<td>${room(t.room).no}<td>${E(t.n)}<td>${x.t}<td>${x.m}<td>${P(x.a)}`}).join('')}</table></div></div>`},
-billing(){return `<div class="top">${mp()}</div><div class="card"><div class="tw"><table><tr><th>Room<th>Tenant<th>Rent<th>Electric<th>Water<th>Other<th>Total<th>Credit<th>Paid<th>Due<th>Status<th></tr>${act(MO).map(t=>{let b=bill(t,MO);return `<tr><td>${b.r.no}<td>${E(t.n)}<td>${P(b.rent)}<td>${P(b.e)}<td>${P(b.w)}<td>${P(b.misc)}<td>${P(b.total)}<td>${P(b.credit)}<td>${P(b.paid)}<td><b>${P(b.due)}</b><td>${tag(status(t,MO))}<td><button class="sm" onclick="stmt(${t.id},MO)">Statement</button>`}).join('')}</table></div></div>`},
-ledger(){let t=ten(LT)||S.tenants[0];return t?`<div class="top"><label>Tenant<select onchange="LT=+this.value;R()">${opt(S.tenants.map(x=>[x.id,room(x.room).no+' - '+x.n+(x.out?' (checked out)':'')]),t.id)}</select></label></div>${LG(t)}`:'<div class="card">No tenants yet.</div>'},
-mine(){let t=ten(U.tid);return t?`<div class="top">${mp()}<button onclick="print()">Print statement</button></div><div class="card" id="stmt">${SH(t.id,MO)}</div>${LG(t)}`:'<div class="card">Your account is not linked to a tenant record. Ask the owner to check you in, then register again.</div>'},
-reports(){let ms=[],x=RF;while(x<=RT&&ms.length<60){ms.push(x);x=addm(x,1)}
-let pays=S.ledger.filter(l=>['rent','advance','deposit'].includes(l.t)&&l.d.slice(0,7)>=RF&&l.d.slice(0,7)<=RT),tot=t=>rnd(pays.filter(l=>l.t==t).reduce((s,l)=>s+l.a,0)),
-byM=ms.map(m=>[m,rnd(pays.filter(l=>l.d.slice(0,7)==m).reduce((s,l)=>s+l.a,0))]),mx=Math.max(1,...byM.map(x=>x[1])),
-ut=S.rooms.map(r=>{let rs=S.readings.filter(q=>q.room==r.id&&q.m>=RF&&q.m<=RT);return[r.no,rs.reduce((s,q)=>s+q.ce-q.pe,0),rs.reduce((s,q)=>s+q.cw-q.pw,0),rs.reduce((s,q)=>s+(q.ce-q.pe)*rate('elec',q.m),0),rs.reduce((s,q)=>s+(q.cw-q.pw)*rate('water',q.m),0)]}),
-out=S.tenants.map(t=>[t,rnd(ms.reduce((s,m)=>s+(active(t,m)&&reading(t.room,m)?bill(t,m).due:0),0))]).filter(x=>x[1]>0);
-return `<div class="top"><div class="f"><label>From<input type="month" value="${RF}" onchange="RF=this.value||RF;R()"></label><label>To<input type="month" value="${RT}" onchange="RT=this.value||RT;R()"></label></div><button onclick="print()">Print report</button></div>
-<div class="grid">${[['Total collected',tot('rent')+tot('advance')+tot('deposit')],['Rent and utilities',tot('rent')],['Advances',tot('advance')],['Deposits',tot('deposit')],['Outstanding balances',out.reduce((s,x)=>s+x[1],0)]].map(([a,b])=>`<div class="stat"><small>${a}</small><b>${P(b)}</b></div>`).join('')}</div>
-<div class="card"><h3>Collections by month</h3><table>${byM.map(([m,v])=>`<tr><td>${ML(m)}<td style="width:55%"><div class="bar" style="width:${v/mx*100}%"></div><td>${P(v)}`).join('')}</table></div>
-<div class="card"><h3>Utility consumption per room</h3><div class="tw"><table><tr><th>Room<th>kWh<th>Electric cost<th>m³<th>Water cost</tr>${ut.map(u=>`<tr><td>${E(u[0])}<td>${u[1]}<td>${P(u[3])}<td>${u[2]}<td>${P(u[4])}`).join('')}</table></div></div>
-<div class="card"><h3>Occupancy today</h3><div class="tw"><table><tr><th>Room<th>Status<th>Tenant<th>Since</tr>${S.rooms.map(r=>{let t=S.tenants.find(x=>x.room==r.id&&!x.out);return `<tr><td>${E(r.no)}<td>${tag(t?'Occupied':'Vacant')}<td>${t?E(t.n):'-'}<td>${t?t.in:'-'}`}).join('')}</table></div></div>
-<div class="card"><h3>Outstanding balances</h3><div class="tw"><table>${out.length?out.map(([t,v])=>`<tr><td>Room ${room(t.room).no}<td>${E(t.n)}<td>${P(v)}`).join(''):'<tr><td>Nothing outstanding in this period.'}</table></div></div>`},
-calendar(){let ds=[...Array(14)].map((_,i)=>sd(CS,i)),td=today(),
-hd='<div class="ch" style="grid-column:1"></div>'+ds.map((x,i)=>`<div class="ch${x==td?' td':''}" style="grid-column:${i+2}">${new Date(x+'T00:00').toLocaleString('en',{weekday:'short'})} ${+x.slice(8)}</div>`).join(''),
-rows=S.rooms.map((r,ri)=>`<div class="cr" style="grid-row:${ri+2}">Room ${E(r.no)}</div>`+ds.map((x,i)=>`<div class="cc${x==td?' td':''}" style="grid-row:${ri+2};grid-column:${i+2}"></div>`).join('')+S.tenants.filter(t=>t.room==r.id&&t.in<=ds[13]&&(!t.out||t.out>=ds[0])).map(t=>{let a=t.in<=ds[0]?0:ds.findIndex(x=>x>=t.in),e=t.out?ds.map(x=>x<=t.out).lastIndexOf(true):13;return `<div class="cb${t.out?' o':''}" style="grid-row:${ri+2};grid-column:${a+2}/${e+3}" onclick="editT(${t.id})" title="Click to edit">${E(t.n)}<small>${t.out?'Checked out':'Checked in'}</small></div>`}).join('')).join('');
-return `<div class="top"><div class="f"><button class="s" onclick="CS=sd(CS,-7);R()">← Previous 7 days</button><button class="s" onclick="CS=today();R()">Today</button><button class="s" onclick="CS=sd(CS,7);R()">Next 7 days →</button></div><b>${ML(CS.slice(0,7))}</b></div><div class="cal" style="grid-template-columns:100px repeat(14,minmax(60px,1fr))">${hd}${rows}</div><p class="mut">Each bar is a stay. Click a bar to edit that tenant. Yellow marks today.</p>`},
-finance(){let e=S.exp.filter(x=>x.d.slice(0,7)==MO),inc=S.ledger.filter(x=>['rent','advance','deposit'].includes(x.t)&&x.d.slice(0,7)==MO),ti=rnd(inc.reduce((s,x)=>s+x.a,0)),te=rnd(e.reduce((s,x)=>s+x.a,0)),
-rows=[...inc.map(x=>({d:x.d,n:'Payment from '+ten(x.tid).n,c:x.t,a:x.a})),...e.map(x=>({d:x.d,n:x.desc,c:x.cat,a:-x.a,id:x.id}))].sort((a,b)=>a.d.localeCompare(b.d));
-return `<div class="top">${mp()}</div><div class="grid">${[['Income',P(ti)],['Expenses',P(te)],['Net',P(ti-te)]].map(([a,b])=>`<div class="stat"><small>${a}</small><b>${b}</b></div>`).join('')}</div>
-<div class="card"><h3>Add expense</h3><form class="f" onsubmit="return H('exp',event)"><label>Date<input type="date" name="d" value="${today()}" required></label><label>Category<select name="cat"><option>Maintenance</option><option>Supplies</option><option>Utilities</option><option>Salaries</option><option>Other</option></select></label><label>Description<input name="desc" required></label><label>Amount ₱<input type="number" name="a" min="0.01" step=".01" required></label><button>Add expense</button></form></div>
-<div class="card"><h3>Transactions</h3><div class="tw"><table><tr><th>Date<th>Name / origin<th>Category<th>Value<th></tr>${rows.map(x=>`<tr><td>${x.d}<td>${E(x.n)}<td>${x.c}<td style="color:${x.a<0?'#c0392b':'#14803a'}"><b>${x.a<0?'-':''}${P(Math.abs(x.a))}</b><td>${x.id?`<button class="sm d" onclick="delExp(${x.id})">Remove</button>`:''}`).join('')}</table></div></div>`},
-users(){return `<div class="card"><h3>Roles</h3><p class="mut"><b>Owner</b>: everything, including users and rates. <b>Staff</b>: calendar, tenants, meter readings and payments. <b>Tenant</b>: own bill and ledger only.</p><div class="tw"><table><tr><th>Name<th>Username<th>Role<th></tr>${S.users.map((u,i)=>`<tr><td>${E(u.n)}<td>${E(u.u)}<td><select onchange="setRole(${i},this.value)" ${u.u==U.u?'disabled':''}>${opt([['owner','Owner'],['staff','Staff'],['tenant','Tenant']],u.r)}</select><td>${u.u==U.u?'<span class="mut">You</span>':`<button class="sm d" onclick="delUser(${i})">Remove</button>`}`).join('')}</table></div></div>`},
-settings(){let L=[['elec','Electricity (₱ per kWh)'],['water','Water (₱ per m³)'],['wifi','Wi-Fi (₱ per room per month)'],['garbage','Garbage (₱ per room per month)']],nm=Object.fromEntries(L);
-return `<div class="card"><h3>Set a new rate</h3><p class="mut">A rate applies from its effective month onward. Earlier statements keep the rate that was active then.</p><form class="f" onsubmit="return H('rate',event)"><label>Rate<select name="t">${opt(L)}</select></label><label>Value ₱<input type="number" name="v" min="0" step=".01" required></label><label>Effective from<input type="month" name="e" value="${CUR}" required></label><button>Save rate</button></form></div>
-<div class="card"><h3>Rate history</h3><div class="tw"><table><tr><th>Rate<th>Value<th>Effective from<th></tr>${S.rates.slice().sort((a,b)=>a.t.localeCompare(b.t)||b.e.localeCompare(a.e)).map(r=>`<tr><td>${nm[r.t]}<td>${P(r.v)}<td>${r.e}<td>${rate(r.t,CUR)==r.v&&r.e<=CUR?tag('Paid').replace('Paid','Active'):''}`).join('')}</table></div></div>`}};
-function LG(t){let ad=0,dp=0,rows=S.ledger.filter(x=>x.tid==t.id).sort((a,b)=>a.d.localeCompare(b.d)||a.id-b.id).map(x=>{if(x.t=='advance')ad+=x.a;if(x.t=='apply')ad-=x.a;if(x.t=='deposit')dp+=x.a;if(x.t=='refund')dp-=x.a;return `<tr><td>${x.d}<td>${x.t}<td>${E(x.note)}<td>${P(x.a)}<td>${P(ad)}<td>${P(dp)}`}).join('');
-return `<div class="grid"><div class="stat"><small>Advance balance</small><b>${P(ad)}</b></div><div class="stat"><small>Deposit balance</small><b>${P(dp)}</b></div></div><div class="card"><h3>Ledger</h3><div class="tw"><table><tr><th>Date<th>Type<th>Note<th>Amount<th>Advance balance<th>Deposit balance</tr>${rows}</table></div></div>`}
-function SH(tid,m){let t=ten(tid),b=bill(t,m),nr='<span class="mut">No reading yet</span>';return `<h3>Billing statement - ${ML(m)}</h3><p>${E(t.n)}, Room ${b.r.no}</p><div class="tw"><table><tr><th>Charge<th>Details<th>Amount</tr><tr><td>Room rent<td><td>${P(b.rent)}
-<tr><td>Electricity<td>${b.rd?`${b.rd.pe} to ${b.rd.ce} = ${b.el} kWh × ${P(b.er)}`:nr}<td>${P(b.e)}<tr><td>Water<td>${b.rd?`${b.rd.pw} to ${b.rd.cw} = ${b.wa} m³ × ${P(b.wr)}`:nr}<td>${P(b.w)}
-${b.items.map(x=>`<tr><td>${E(x[0])}<td><td>${P(x[1])}`).join('')}<tr><th>Monthly total<th><th>${P(b.total)}<tr><td>Less advance credit applied<td><td>-${P(b.credit)}<tr><td>Less payments received<td><td>-${P(b.paid)}<tr><th>Amount due<th><th>${P(b.due)}</table></div>
-<p>${tag(status(t,m))} Advance balance ${P(bal(tid,'adv'))}, deposit balance ${P(bal(tid,'dep'))}</p>`}
-function stmt(tid,m){let can=U.r=='owner'&&bill(ten(tid),m).due>0&&bal(tid,'adv')>0;document.body.classList.add('pm');$('#m').innerHTML=`<div class="mb"><div class="card" id="stmt">${SH(tid,m)}</div><div class="row nop"><button onclick="print()">Print</button>${can?`<button class="s" onclick="applyAdv(${tid},'${m}')">Apply advance credit</button>`:''}<button class="s" onclick="closeM()">Close</button></div></div>`}
-function closeM(){$('#m').innerHTML='';document.body.classList.remove('pm')}
-function applyAdv(tid,m){let a=rnd(Math.min(bill(ten(tid),m).due,bal(tid,'adv')));if(a>0){S.ledger.push({id:nid(),tid,m,a,d:today(),t:'apply',note:'Advance applied to '+ML(m)+' bill'});save()}R();stmt(tid,m)}
-function checkout(id){let t=ten(id),dep=bal(id,'dep'),x=prompt(`Deposit held: ${P(dep)}\nAmount to deduct (damages, unpaid bills):`,'0');if(x===null)return;x=+x||0;if(x<0||x>dep)return alert('Deduction must be between 0 and the deposit held.');
-t.out=today();if(dep>0)S.ledger.push({id:nid(),tid:id,m:CUR,a:dep,d:today(),t:'refund',note:`Check-out: refunded ${P(dep-x)}, deducted ${P(x)}`});save();R()}
-function editRent(i){let v=prompt('New monthly rent (₱):',room(i).rent);if(v!==null&&+v>=0&&v.trim()!==''){room(i).rent=+v;save();R()}}
-function delMisc(i){S.misc=S.misc.filter(x=>x.id!=i);save();R()}
-function logout(){U=null;localStorage.removeItem('sb_user');tab='in';R()}
-function editT(id){let t=ten(id);$('#m').innerHTML=`<div class="mb"><div class="card"><h3>Edit tenant</h3><form class="col" onsubmit="return H('edit',event)"><input type="hidden" name="id" value="${id}"><label>Name<input name="n" value="${E(t.n)}" required></label><label>Phone<input name="ph" value="${E(t.ph)}"></label><label>Emergency contact<input name="em" value="${E(t.em)}"></label><label>Move-in date<input type="date" name="in" value="${t.in}" required></label><label>Room<input value="${E(room(t.room).no)}" disabled></label><p class="mut">To move a tenant to another room, check them out and check them in again.</p><div class="row"><button>Save changes</button><button type="button" class="s" onclick="closeM()">Cancel</button></div></form></div></div>`}
-function delExp(i){if(confirm('Remove this expense?')){S.exp=S.exp.filter(x=>x.id!=i);save();R()}}
-function setRole(i,r){let u=S.users[i];if(r=='tenant'&&!u.tid){alert('A tenant account must be linked to a tenant record. Ask them to register as a tenant with their room number.');return R()}u.r=r;save();R()}
-function delUser(i){if(confirm('Remove this account?')){S.users.splice(i,1);save();R()}}
-const A={
-login(d){let u=S.users.find(x=>x.u==d.u.trim().toLowerCase()&&x.p==hash(d.p));if(!u)throw Error('Wrong username or password.');U=u;localStorage.setItem('sb_user',u.u)},
-reg(d){let u=d.u.trim().toLowerCase();if(S.users.some(x=>x.u==u))throw Error('That username is taken. Choose another.');if(d.p!=d.p2)throw Error('Passwords do not match.');let o={u,p:hash(d.p),n:d.n.trim(),r:d.r};
-if(d.r=='tenant'){let rm=S.rooms.find(r=>r.no==d.room.trim()),t=rm&&S.tenants.find(t=>t.room==rm.id&&!t.out);if(!t)throw Error('No tenant is checked in to that room. Ask the owner to check you in first.');o.tid=t.id}else if(d.code!='SMART2026')throw Error('Wrong staff / owner access code.');
-S.users.push(o);U=o;page='dash';localStorage.setItem('sb_user',u)},
-checkin(d){let id=nid(),t={id,n:d.n.trim(),ph:d.ph,em:d.em,room:+d.room,in:d.in,out:''};S.tenants.push(t);[['deposit',d.dep,'Security deposit'],['advance',d.adv,'Advance payment']].forEach(([k,v,n])=>{if(+v>0)S.ledger.push({id:nid(),tid:id,m:d.in.slice(0,7),a:+v,d:d.in,t:k,note:n})})},
-room(d){if(S.rooms.some(r=>r.no==d.no.trim()))throw Error('Room number already exists.');S.rooms.push({id:nid(),no:d.no.trim(),f:+d.f,rent:+d.rent})},
-reading(d){let r={room:+d.room,m:d.m,pe:+d.pe,ce:+d.ce,pw:+d.pw,cw:+d.cw};if(r.ce<r.pe||r.cw<r.pw)throw Error('Current reading cannot be lower than the previous reading.');let i=S.readings.findIndex(x=>x.room==r.room&&x.m==r.m);i<0?S.readings.push(r):S.readings[i]=r},
-misc(d){S.misc.push({id:nid(),room:+d.room,m:d.m,desc:d.desc.trim(),a:+d.a})},
-pay(d){if(!(+d.a>0))throw Error('Enter an amount above zero.');S.ledger.push({id:nid(),tid:+d.tid,m:d.m,a:+d.a,d:d.d,t:d.t,note:d.t=='rent'?'Rent & utilities':d.t=='advance'?'Advance payment':'Security deposit'})},
-edit(d){let t=ten(+d.id);if(t.out&&d.in>t.out)throw Error('Move-in date cannot be after the check-out date.');t.n=d.n.trim();t.ph=d.ph;t.em=d.em;t.in=d.in;closeM()},
-exp(d){if(!(+d.a>0))throw Error('Enter an amount above zero.');S.exp.push({id:nid(),d:d.d,cat:d.cat,desc:d.desc.trim(),a:+d.a})},
-rate(d){S.rates.push({t:d.t,v:+d.v,e:d.e})}};
-function H(n,e){e.preventDefault();try{A[n](Object.fromEntries(new FormData(e.target)));save();R()}catch(x){alert(x.message)}return false}
-if(!S)seed();S.exp=S.exp||[];U=S.users.find(x=>x.u==localStorage.getItem('sb_user'))||null;if(location.hash=='#register')tab='up';R();
-</script></body></html>
+const $=s=>document.getElementById(s),I=f=>'Images/'+f,E=s=>String(s).replace(/[&<>"]/g,c=>'&#'+c.charCodeAt(0)+';'),lo=!!localStorage.getItem('sb_user'),
+R=[['Deluxe Rooms','Deluxe-Regency_01.jpg','Bright, comfortable rooms with a work desk.',3800,2],['Premier Floor','premier-regency_01.jpg','Higher floors with extra space and quiet views.',4800,3],['Executive Suite','Room-Image_Executive-Suite.jpg','A living area and workspace for longer stays.',7200,4],['Premier Executive Suite','premier-executive-suite_04.jpg','Our largest suite with a lounge area.',9500,4]],
+D=[['Main Dining','01-OPT-Yurakuen-Main-Dining-1.jpg'],['Corniche','corniche1.jpg'],['Sky Bar','Bar27-01.jpg'],['Poolside Bar','poolside-bar.jpg']],
+F=[['Health Club','Facilities_Health_Club_01.jpg'],['Swimming Pool','Facilities_Pool_01.jpg'],['Fitness Gym','Facilities_Gym_01.jpg'],['Spa & Massage','Aromatherapy-Massage-1.png']],
+MN=[['01','Stay','Rooms & suites','#stay'],['02','Taste','Dining & drinks','#taste'],['03','Unwind','Pool & wellness','#unwind'],lo?['04','Dashboard','Open the system','portal.html']:['04','Log in','Residents & staff','portal.html'],...(lo?[]:[['05','Sign up','Create an account','portal.html#register']])],
+MD=[['Tenants','Check in, edit records and view history.'],['Calendar','See every room and stay at a glance.'],['Meter readings','Record electricity and water each month.'],['Billing & payments','Statements, rent, advance and deposit.'],['Reports','Collections, utilities and occupancy.']];
+$('mn').innerHTML=MN.map(m=>`<a class="mi" href="${m[3]}" onclick="tm(0)"><span class="mono">${m[0]}</span><span class="l">${m[1]}</span><span class="x">${m[2]}</span></a>`).join('');
+$('rg').innerHTML=R.map(r=>`<div class="rc"><div class="im"><img src="${I(r[1])}" alt="${r[0]}" loading="lazy"></div><h3>${r[0]}</h3><p>${r[2]} Up to ${r[4]} guests.</p><div class="pr"><span class="mono">From ₱${r[3].toLocaleString()} / night</span><button class="eb" onclick="bkp(1)">Book</button></div></div>`).join('');
+const pc=a=>a.map(([n,f])=>`<div class="pc"><img src="${I(f)}" alt="${n}" loading="lazy"><span>${n}</span></div>`).join('');$('dg').innerHTML=pc(D);$('fg').innerHTML=pc(F);
+$('ml2').innerHTML=MD.map((m,i)=>`<div><span class="mono">0${i+1}</span><b>${m[0]}</b><span>${m[1]}</span></div>`).join('');
+if(lo){$('li').textContent='Dashboard';$('p1').textContent='Open dashboard';$('p2').style.display='none'}
+function tm(v){let b=document.body,o=v===undefined?!b.classList.contains('mo'):!!v;b.classList.toggle('mo',o);$('mt').setAttribute('aria-expanded',o);$('ml').textContent=o?'Close':'Menu'}
+function bkp(o){$('bp').classList.toggle('on',!!o);$('bp').setAttribute('aria-hidden',!o);if(o)setTimeout(()=>$('ar').focus(),300)}
+onkeydown=e=>{if(e.key=='Escape'){tm(0);bkp(0)}};
+function clk(){let d=new Date(),h=d.getHours();$('ck').textContent=String(h).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+' — '+(h<6?'quiet night':h<12?'morning light':h<17?'bright afternoon':h<20?'soft light':'evening glow')}clk();setInterval(clk,30000);
+const t0=new Date().toISOString().slice(0,10);ar.min=dp.min=t0;
+ar.onchange=()=>{let d=new Date(ar.value);d.setDate(d.getDate()+1);dp.min=d.toISOString().slice(0,10);if(dp.value&&dp.value<=ar.value)dp.value=''};
+function find(e){e.preventDefault();let n=Math.round((new Date(dp.value)-new Date(ar.value))/864e5),g=+gs.value;if(!(n>0)){alert('Departure must be after arrival.');return false}
+let L=R.filter(r=>r[4]>=g);M.innerHTML=`<div class="dg"><button class="x" onclick="M.close()">×</button><p class="eb" style="color:var(--t)">Availability</p><h2>Available rooms</h2><p>${ar.value} to ${dp.value}: ${n} night${n>1?'s':''}, ${g} guest${g>1?'s':''}</p>${L.map(r=>`<div class="rw"><img src="${I(r[1])}" alt=""><div><h3 style="font-size:22px">${r[0]}</h3><span class="mono">₱${(r[3]*n).toLocaleString()} total</span></div><button class="go eb" style="width:auto;margin:0" onclick="rsv('${r[0]}',${r[3]*n},${n})">Reserve</button></div>`).join('')||'<p>No room fits that group size. Try fewer guests.</p>'}</div>`;bkp(0);M.showModal();return false}
+function rsv(name,total,n){M.innerHTML=`<div class="dg"><button class="x" onclick="M.close()">×</button><p class="eb" style="color:var(--t)">Reservation</p><h2>${name}</h2><p>${n} night${n>1?'s':''}, total ₱${total.toLocaleString()}</p><form onsubmit="return sv(event,'${name}',${total})"><input name="n" placeholder="Full name" required><input name="p" placeholder="Phone number" required><input name="e" type="email" placeholder="Email" required><textarea name="m" placeholder="Special requests (optional)"></textarea><button class="go eb">Confirm reservation</button></form></div>`}
+function sv(e,room,total){e.preventDefault();let d=Object.fromEntries(new FormData(e.target)),L=JSON.parse(localStorage.getItem('sb_bookings')||'[]'),ref='SB-'+Date.now().toString(36).toUpperCase();
+L.push({ref,room,total,arrive:ar.value,depart:dp.value,guests:gs.value,...d});localStorage.setItem('sb_bookings',JSON.stringify(L));
+M.innerHTML=`<div class="dg"><button class="x" onclick="M.close()">×</button><p class="eb" style="color:var(--t)">Thank you</p><h2>Reservation received</h2><p>${E(d.n)}, your reference is <b>${ref}</b>. We will contact you at ${E(d.p)} to confirm.</p><button class="go eb" style="width:auto" onclick="M.close()">Close</button></div>`;return false}
+</script><div class="music-player">
+  <button class="music-player__btn" id="music-btn" onclick="toggleMusic()" aria-label="Toggle music">
+    <svg class="mp-icon-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+    <svg class="mp-icon-play" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M8 5v14l11-7z"/></svg>
+  </button>
+  <div class="music-player__info">
+    <div class="music-player__label">Now Playing</div>
+    <div class="music-player__title">SmartBoard Theme</div>
+    <div class="music-player__sub">SmartBoard Residence</div>
+  </div>
+  <div class="music-player__eq" id="music-eq"><span></span><span></span><span></span><span></span></div>
+  <label class="music-player__toggle">
+    <input type="checkbox" id="music-toggle-input" onchange="toggleMusic()">
+    <span class="music-player__toggle-track"><span class="music-player__toggle-thumb"></span></span>
+  </label>
+</div>
+<script>
+var musicTouched=false,TARGET=.5,A=null,EV=['pointerup','click','keydown','touchend'];
+/* The music IS the sound of Videos/front.mp4. "On" = video unmuted; "off" = muted (the picture keeps playing). */
+function on(){return A&&!A.muted&&!A.paused}
+function setMusicUI(s){var b=document.getElementById('music-btn'),eq=document.getElementById('music-eq'),t=document.getElementById('music-toggle-input');if(!b)return;
+var pl=b.querySelector('.mp-icon-play'),pa=b.querySelector('.mp-icon-pause');if(pl)pl.style.display=s?'none':'';if(pa)pa.style.display=s?'':'none';if(eq)eq.classList.toggle('playing',s);if(t)t.checked=s}
+function fadeTo(v){clearInterval(fadeTo.t);fadeTo.t=setInterval(function(){var d=v-A.volume;if(Math.abs(d)<.03){A.volume=v;clearInterval(fadeTo.t)}else A.volume=Math.max(0,Math.min(1,A.volume+Math.sign(d)*.04))},100)}
+function soundOn(fade){A.muted=false;A.volume=fade?0:TARGET;var r=A.play();(r&&r.then?r:Promise.resolve()).then(function(){setMusicUI(true);if(fade)fadeTo(TARGET)}).catch(function(){A.muted=true;A.play().catch(function(){});setMusicUI(false)})}
+function toggleMusic(){if(!A)return;musicTouched=true;if(on()){A.muted=true;setMusicUI(false)}else soundOn(false)}
+function onFirstGesture(fn){var go=function(e){if(e&&e.target&&e.target.closest&&e.target.closest('.music-player'))return;EV.forEach(function(t){window.removeEventListener(t,go,true)});if(!musicTouched)fn()};EV.forEach(function(t){window.addEventListener(t,go,true)})}
+var autoArmed=false;
+function silentStart(){autoArmed=false;A.muted=true;A.play().catch(function(){});setMusicUI(false);onFirstGesture(function(){soundOn(true)})}
+function autoStart(){
+/* 1) try the video with sound straight away  2) if the browser refuses (it may reject OR pause the video a moment later), keep the picture playing silently and switch the sound on at the first click/tap/key */
+autoArmed=true;A.addEventListener('pause',function(){if(autoArmed)silentStart()});setTimeout(function(){autoArmed=false},4000);
+A.muted=false;A.volume=0;var r=A.play();
+(r&&r.then?r:Promise.resolve()).then(function(){setTimeout(function(){if(!autoArmed)return;if(A.paused||A.muted)silentStart();else{setMusicUI(true);fadeTo(TARGET)}},700)}).catch(silentStart)}
+(function(){A=document.getElementById('hero-video');setMusicUI(false);
+A.addEventListener('error',function(){setMusicUI(false);var s=document.querySelector('.music-player__sub');if(s){s.textContent='Video not found: '+A.getAttribute('src');s.style.color='#e9a58a';s.style.display='block'}});
+autoStart()})();
+</script>
+</body></html>
