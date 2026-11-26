@@ -254,5 +254,8 @@ app.use((err, req, res, next) => {
   console.error(err); res.status(500).json({ error: 'Server error. Check the server console.' });
 });
 
-pool.query('SELECT 1').then(() => app.listen(+E.PORT || 3000, () => console.log(`SmartBoard running at http://localhost:${E.PORT || 3000}`)))
-  .catch(e => { console.error('Cannot connect to MySQL:', e.message, '\nCheck DB_* in your .env file and that MySQL is running, and that you ran: npm run setup'); process.exit(1); });
+module.exports = app;   // lets hosts such as Vercel run the app as a function
+if (require.main === module) {   // normal start: npm start
+  pool.query('SELECT 1').then(() => app.listen(+E.PORT || 3000, () => console.log(`SmartBoard running at http://localhost:${E.PORT || 3000}`)))
+    .catch(e => { console.error('Cannot connect to MySQL:', e.message, '\nCheck DB_* in your .env file and that MySQL is running, and that you ran: npm run setup'); process.exit(1); });
+}
