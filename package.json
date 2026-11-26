@@ -1,0 +1,23 @@
+{
+  "name": "smartboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SmartBoard Residence - boarding house management system",
+  "scripts": {
+    "start": "node server.js",
+    "setup": "node database/setup.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "helmet": "^7.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.11.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
